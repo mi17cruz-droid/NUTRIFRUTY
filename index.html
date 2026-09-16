@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUTRIFRUTY - Fruta Deshidratada 100% Natural</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-orange: #FF6B00;
+            --secondary-orange: #FF8A00;
+            --bright-yellow: #FFC700;
+            --light-yellow: #FFF5D6;
+            --mustard-yellow: #D9822B;
+            --dark-mustard: #B85D09;
+            --dark-brown: #2D1B0D;
+            --text-dark: #1F1F1F;
+            --text-light: #555555;
+            --white: #FFFFFF;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --card-shadow: 0 10px 30px rgba(45, 27, 13, 0.08);
+            --card-hover-shadow: 0 20px 40px rgba(255, 107, 0, 0.22);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FFFDF9;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Header & Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 253, 249, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 107, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-orange);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active-link {
+            color: var(--primary-orange);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white) !important;
+            padding: 12px 24px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.3);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 107, 0, 0.4);
+        }
+
+        .cart-badge-count {
+            background: var(--bright-yellow);
+            color: var(--dark-brown);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 50%;
+            margin-left: 4px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: var(--primary-orange);
+            z-index: 1001;
+        }
+
+        /* SPA Sections Management */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            padding-top: 140px;
+            min-height: calc(100vh - 100px);
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 80px;
+        }
+
+        .page-section.active-section {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - 100px);
+            padding-top: 40px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--light-yellow);
+            color: var(--primary-orange);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 199, 0, 0.4);
+            animation: pulse-badge 2s infinite;
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(40px, 4.5vw, 62px);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--dark-brown);
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--primary-orange), var(--bright-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 35px;
+            max-width: 540px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white);
+            padding: 16px 34px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.35);
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--dark-brown);
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid rgba(255, 107, 0, 0.2);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-orange);
+            background: var(--light-yellow);
+            transform: translateY(-3px);
+        }
+
+        .benefits-mini {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding-top: 30px;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 107, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--bright-yellow);
+            box-shadow: 0 10px 20px rgba(255, 199, 0, 0.15);
+        }
+
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-yellow);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-orange);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .benefit-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            margin-bottom: 4px;
+        }
+
+        .benefit-card p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        /* Hero Visuals */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blob-bg {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            background: linear-gradient(135deg, var(--bright-yellow), var(--secondary-orange));
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            z-index: -1;
+            opacity: 0.2;
+            animation: morph 8s ease-in-out infinite alternate;
+        }
+
+        .main-img-container {
+            position: relative;
+            width: 360px;
+            height: 460px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(45, 27, 13, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .main-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .main-img-container:hover img {
+            transform: scale(1.08);
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: var(--white);
+            padding: 12px 20px;
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10;
+            animation: float-reverse 5s ease-in-out infinite;
+        }
+
+        .floating-badge.badge-1 { top: 30px; left: -25px; }
+        .floating-badge.badge-2 { bottom: 40px; right: -25px; animation-delay: 1s; }
+
+        .floating-badge i {
+            font-size: 22px;
+            color: var(--primary-orange);
+            background: var(--light-yellow);
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .badge-text span { display: block; font-size: 12px; color: var(--text-light); font-weight: 500; }
+        .badge-text strong { font-size: 15px; color: var(--dark-brown); }
+
+        /* Beneficios Section */
+        .why-section {
+            background: linear-gradient(180deg, #FFFDF9 0%, #FFF7E6 100%);
+            border-radius: 40px;
+            padding: 50px;
+            border: 1px solid rgba(255, 199, 0, 0.2);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+        }
+
+        .section-header span {
+            color: var(--primary-orange);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-box {
+            background: var(--white);
+            padding: 35px 30px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(45, 27, 13, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 107, 0, 0.08);
+        }
+
+        .benefit-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.15);
+            border-color: var(--bright-yellow);
+        }
+
+        .benefit-box .big-icon {
+            width: 65px;
+            height: 65px;
+            background: var(--light-yellow);
+            color: var(--primary-orange);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .benefit-box h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            margin-bottom: 12px;
+        }
+
+        .benefit-box p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* SECCIÓN: NOSOTROS */
+        .story-container {
+            background: linear-gradient(135deg, #FFFDF9 0%, #FFF4E0 100%);
+            border-radius: 40px;
+            padding: 60px;
+            border: 2px solid rgba(217, 130, 43, 0.25);
+            box-shadow: 0 20px 45px rgba(184, 93, 9, 0.08);
+        }
+
+        .story-main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .story-text-content h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(30px, 3.8vw, 40px);
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .story-text-content h2 span {
+            background: linear-gradient(135deg, var(--primary-orange), var(--mustard-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .story-text-content p {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .story-img-showcase {
+            position: relative;
+            background: linear-gradient(135deg, var(--light-yellow), #FFE5B4);
+            border-radius: 30px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(217, 130, 43, 0.18);
+            border: 2px solid rgba(255, 199, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .story-img-showcase img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(45, 27, 13, 0.15);
+            transition: transform 0.5s ease;
+        }
+
+        .story-img-showcase:hover img {
+            transform: scale(1.05) rotate(1deg);
+        }
+
+        .story-img-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--dark-brown);
+            color: var(--bright-yellow);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nosotros-boxes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .nosotros-info-box {
+            background: var(--white);
+            border-radius: 22px;
+            padding: 30px 24px;
+            border: 2px solid rgba(217, 130, 43, 0.15);
+            box-shadow: 0 10px 25px rgba(45, 27, 13, 0.04);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nosotros-info-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--mustard-yellow));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nosotros-info-box:hover {
+            transform: translateY(-8px);
+            border-color: var(--mustard-yellow);
+            box-shadow: 0 18px 35px rgba(217, 130, 43, 0.2);
+        }
+
+        .nosotros-info-box:hover::before {
+            opacity: 1;
+        }
+
+        .box-icon-wrap {
+            width: 55px;
+            height: 55px;
+            background: var(--light-yellow);
+            color: var(--dark-mustard);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 15px rgba(255, 199, 0, 0.2);
+        }
+
+        .nosotros-info-box h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 10px;
+        }
+
+        .nosotros-info-box p {
+            font-size: 13.5px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .box-highlights-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            border-top: 1px dashed rgba(217, 130, 43, 0.2);
+            padding-top: 12px;
+        }
+
+        .box-highlights-list li {
+            font-size: 13px;
+            color: var(--text-dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .box-highlights-list li i {
+            color: var(--primary-orange);
+            font-size: 11px;
+        }
+
+        /* Buscador del Catálogo */
+         .catalog-search-container {
+            max-width: 550px;
+            margin: 0 auto 40px auto;
+            position: relative;
+        }
+
+        .catalog-search-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 107, 0, 0.25);
+            background: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 15px;
+            color: var(--text-dark);
+            box-shadow: 0 8px 20px rgba(45, 27, 13, 0.04);
+            transition: var(--transition);
+        }
+
+        .catalog-search-input:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 12px 25px rgba(255, 107, 0, 0.15);
+        }
+
+        .catalog-search-container i {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            color: var(--primary-orange);
+            font-size: 18px;
+        }
+
+        .no-results-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            font-size: 18px;
+            color: var(--text-light);
+            font-style: italic;
+            display: none;
+        }
+
+        /* Catálogo de Productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 107, 0, 0.12);
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--card-hover-shadow);
+            border-color: rgba(255, 107, 0, 0.4);
+        }
+
+        .product-card.star-product {
+            border: 2px solid var(--bright-yellow);
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF2 100%);
+        }
+
+        .product-card.star-product::before {
+            content: "★ Producto Estrella";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #FFD700, #FF8A00);
+            color: var(--dark-brown);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 20px;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(255, 199, 0, 0.4);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: var(--light-yellow);
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            color: var(--primary-orange);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 12px;
+        }
+
+        .product-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .product-pricing {
+            background: #FFFBF0;
+            border: 1px dashed rgba(255, 107, 0, 0.25);
+            padding: 12px 15px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+
+        .pricing-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .pricing-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .pricing-option-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark-brown);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .pricing-option-label:hover {
+            background: rgba(255, 107, 0, 0.08);
+        }
+
+        .pricing-option-label input {
+            accent-color: var(--primary-orange);
+        }
+
+        .pricing-item-price {
+            color: var(--primary-orange);
+            font-weight: 700;
+        }
+
+        .btn-action {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 6px 16px rgba(255, 107, 0, 0.25);
+            transition: var(--transition);
+        }
+
+        .btn-action:hover {
+            background: linear-gradient(135deg, var(--dark-brown), #422915);
+            box-shadow: 0 8px 20px rgba(45, 27, 13, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Checkout / Boleta Section (Pide Ahora) */
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .checkout-cart-box, .checkout-receipt-box {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(255, 107, 0, 0.12);
+            box-shadow: var(--card-shadow);
+        }
+
+        .checkout-cart-box h3, .checkout-receipt-box h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 380px;
+            overflow-y: auto;
+            margin-bottom: 25px;
+            padding-right: 5px;
+        }
+
+        .cart-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #FFFDF9;
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .cart-item-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark-brown);
+        }
+
+        .cart-item-info span {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cart-item-controls span {
+            font-weight: 700;
+            color: var(--primary-orange);
+            font-size: 15px;
+        }
+
+        .btn-remove {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+
+        .btn-remove:hover {
+            transform: scale(1.2);
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            color: var(--text-light);
+            padding: 40px 0;
+            font-style: italic;
+        }
+
+        /* Estilo Boleta de Venta */
+        .receipt {
+            background: #FFFDF4;
+            border: 2px dashed rgba(255, 107, 0, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--dark-brown);
+        }
+
+        .receipt-header {
+            text-align: center;
+            border-bottom: 1px dashed rgba(0,0,0,0.15);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .receipt-header h4 {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .receipt-header p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .receipt-body {
+            margin-bottom: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .receipt-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .receipt-total {
+            border-top: 2px solid var(--dark-brown);
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .btn-checkout-whatsapp {
+            width: 100%;
+            margin-top: 20px;
+            background: #25D366;
+            color: var(--white);
+            border: none;
+            padding: 16px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-checkout-whatsapp:hover {
+            background: #1ebe5d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Pie de Página (Footer) */
+        footer {
+            background: linear-gradient(135deg, var(--mustard-yellow), var(--primary-orange));
+            color: var(--white);
+            padding: 50px 0 20px 0;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h3, .footer-col h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            margin-bottom: 18px;
+            color: #FFF;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            opacity: 0.9;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            padding-left: 5px;
+            color: var(--light-yellow);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .footer-socials a {
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-socials a:hover {
+            background: var(--white);
+            color: var(--primary-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 40px auto 0 auto;
+            padding: 20px 40px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+
+        /* Notificación Toast */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--dark-brown);
+            color: var(--white);
+            padding: 14px 24px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        #toast i {
+            color: var(--bright-yellow);
+            font-size: 18px;
+        }
+
+        /* Animations */
+        @keyframes morph {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; }
+            100% { border-radius: 50% 50% 60% 40% / 60% 40% 50% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 199, 0, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(255, 199, 0, 0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 50px;
+            }
+            .hero-subtitle { margin: 0 auto 35px auto; }
+            .hero-actions { justify-content: center; flex-wrap: wrap; }
+            .benefits-mini { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .checkout-layout { grid-template-columns: 1fr; }
+            .story-main-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .story-container { padding: 30px 20px; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+                transition: var(--transition);
+                z-index: 1000;
+            }
+            .nav-links.active { right: 0; }
+            .hamburger { display: block; }
+            .floating-badge.badge-1 { left: 10px; }
+            .floating-badge.badge-2 { right: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="nav-container">
+            <a class="logo" onclick="switchSection('inicio')">
+                <img src="img/logo.jpg" alt="Logo NUTRIFRUTY"> NUTRIFRUTY
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="switchSection('inicio')" id="link-inicio" class="active-link">Inicio</a></li>
+                <li><a onclick="switchSection('beneficios')" id="link-beneficios">Por qué te hace bien</a></li>
+                <li><a onclick="switchSection('catalogo')" id="link-catalogo">Catálogo Real</a></li>
+                <li><a onclick="switchSection('nosotros')" id="link-nosotros">Nosotros</a></li>
+                <li><a onclick="switchSection('pide-ahora')" id="link-pide-ahora" class="nav-cta"><i class="fa-solid fa-cart-shopping"></i> ¡Pide Ahora! <span class="cart-badge-count" id="cartBadgeCount">0</span></a></li>
+            </ul>
+            <button class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- SECCIÓN: INICIO -->
+        <section id="sec-inicio" class="page-section active-section">
+            <div class="hero">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <i class="fa-solid fa-seedling"></i> 100% Natural & Artesanal
+                        </div>
+                        <h1 class="hero-title">Snacks crujientes cargados <span> de pura energía real.</span></h1>
+                        <p class="hero-subtitle">Disfruta de la fruta deshidratada más deliciosa de Jaén, elaborada sin azúcares añadidas ni conservantes artificiales. El snack perfecto para acompañar tus días y cuidar tu salud.</p>
+                        
+                        <div class="hero-actions">
+                            <button class="btn-primary" onclick="switchSection('catalogo')">
+                                Ver Catálogo de Frutas <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <button class="btn-secondary" onclick="switchSection('beneficios')">
+                                <i class="fa-solid fa-heart-pulse"></i> Conoce Sus Beneficios
+                            </button>
+                        </div>
+
+                        <div class="benefits-mini">
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fa-solid fa-shield-heart"></i>
+                                </div>
+                                <h4>Sin Azúcar Añadida</h4>
+                                <p>Dulzor 100% natural directo de la fruta.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fa-solid fa-leaf"></i>
+                                </div>
+                                <h4>100% Sostenible</h4>
+                                <p>Aprovechamiento eficiente local.</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fa-solid fa-bolt"></i>
+                                </div>
+                                <h4>Energía Activa</h4>
+                                <p>Ideal para deportistas y estudio.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual">
+                    <div class="blob-bg"></div>
+                    <div class="main-img-container">
+                        <img src="img/general.png" alt="Fruta deshidratada NUTRIFRUTY">
+                    </div>
+                    <div class="floating-badge badge-1">
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+                        <div class="badge-text">
+                            <span>Energía al instante</span>
+                            <strong>Snack Saludable</strong>
+                        </div>
+                    </div>
+                    <div class="floating-badge badge-2">
+                        <i class="fa-solid fa-award"></i>
+                        <div class="badge-text">
+                            <span>Calidad Premium</span>
+                            <strong>Vitaminas Intactas</strong>
+                        </div>
+                    </div>
+                </div>
+
+                       <!-- <div class="floating-badge badge-2">
+                            <i class="fa-solid fa-award"></i>
+                            <div class="badge-text">
+                                <span>Calidad Premium</span>
+                                <strong>Vitaminas Intactas</strong>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: POR QUÉ TE HACE BIEN -->
+        <section id="sec-beneficios" class="page-section">
+            <div class="why-section">
+                <div class="section-header">
+                    <span>Bienestar y Nutrición</span>
+                    <h2>¿Por qué NUTRIFRUTY es excelente para ti?</h2>
+                    <p>Pensado para adaptarse a tu estilo de vida dinámico, aportando vitalidad real sin sacrificar el sabor.</p>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-box">
+                        <div class="big-icon">
+                            <i class="fa-solid fa-battery-full"></i>
+                        </div>
+                        <h3>Energía limpia para tu día</h3>
+                        <p>Al concentrar los nutrientes naturales de la fruta, obtienes carbohidratos de calidad que te recargan las pilas para estudiar, entrenar o trabajar sin bajones de azúcar.</p>
+                    </div>
+
+                    <div class="benefit-box">
+                        <div class="big-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <h3>Cuida tu corazón y digestión</h3>
+                        <p>Rico en fibra natural que regula tu tránsito digestivo y antioxidantes que protegen tus células, ayudándote a mantenerte joven, activo y con defensas altas.</p>
+                    </div>
+
+                    <div class="benefit-box">
+                        <div class="big-icon">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <h3>Práctico y sin culpa</h3>
+                        <p>Olvídate de la chatarra ultraprocesada. Llévalo en la mochila o cartera a donde vayas. Disfrutas de un snack crujiente, dulce y 100% honesto contigo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: CATÁLOGO REAL CON BUSCADOR -->
+        <section id="sec-catalogo" class="page-section">
+            <div class="section-header">
+                <span>Nuestros Sabores</span>
+                <h2>Catálogo de Frutas Deshidratadas</h2>
+                <p>Explora nuestras deliciosas opciones 100% naturales. Elige tu presentación favorita y añade salud a tus días.</p>
+            </div>
+
+            <!-- Buscador en Catálogo Real -->
+           <div class="catalog-search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="catalogSearchInput" class="catalog-search-input" placeholder="Busca tu fruta favorita (ej. Fresa, Mango, Mix)..." onkeyup="filterCatalog()">
+            </div>
+
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Producto 1: Mix Tropical -->
+                <article class="product-card star-product" data-name="mix tropical fruta mixta">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80" alt="Mix Tropical">
+                        <span class="product-badge">Multi-Fruta</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Mix Tropical</h3>
+                        <p class="product-description">Una explosión de sabores en una sola bolsa. Combina fresa, mango, kiwi, piña, plátano, manzana y papaya.</p>
+                        <div class="product-pricing">
+                            <span class="pricing-title">Presentaciones y Precios</span>
+                            <div class="pricing-list">
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-mix-tropical" value="50 gr" data-price="7" checked> Bolsa 50 gr</span>
+                                    <span class="pricing-item-price">7 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-mix-tropical" value="100 gr" data-price="12"> Bolsa 100 gr</span>
+                                    <span class="pricing-item-price">12 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-mix-tropical" value="200 gr" data-price="22"> Bolsa 200 gr</span>
+                                    <span class="pricing-item-price">22 soles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn-action" onclick="addToCart('Mix Tropical', 'opt-mix-tropical')">
+                            <i class="fa-solid fa-cart-shopping"></i> Pedir Mix Tropical
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 2: Fresa -->
+                <article class="product-card" data-name="fresa fresas">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=600&q=80" alt="Fresa Deshidratada">
+                        <span class="product-badge">Antioxidante</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Fresa</h3>
+                        <p class="product-description">Crujientes láminas de fresa silvestre. Una recarga instantánea de Vitamina C y antioxidantes.</p>
+                        <div class="product-pricing">
+                            <span class="pricing-title">Presentaciones y Precios</span>
+                            <div class="pricing-list">
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-fresa" value="50 gr" data-price="7" checked> Bolsa 50 gr</span>
+                                    <span class="pricing-item-price">7 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-fresa" value="100 gr" data-price="12"> Bolsa 100 gr</span>
+                                    <span class="pricing-item-price">12 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-fresa" value="200 gr" data-price="22"> Bolsa 200 gr</span>
+                                    <span class="pricing-item-price">22 soles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn-action" onclick="addToCart('Fresa', 'opt-fresa')">
+                            <i class="fa-solid fa-cart-shopping"></i> Pedir Fresa
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 3: Mango -->
+                <article class="product-card" data-name="mango mangos">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80" alt="Mango Deshidratado">
+                        <span class="product-badge">Dulce Tropical</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Mango</h3>
+                        <p class="product-description">Tiras de mango selecto con textura suave y masticable. Sabor intenso que calma el antojo de dulce.</p>
+                        <div class="product-pricing">
+                            <span class="pricing-title">Presentaciones y Precios</span>
+                            <div class="pricing-list">
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-mango" value="50 gr" data-price="7" checked> Bolsa 50 gr</span>
+                                    <span class="pricing-item-price">7 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-mango" value="100 gr" data-price="12"> Bolsa 100 gr</span>
+                                    <span class="pricing-item-price">12 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-mango" value="200 gr" data-price="22"> Bolsa 200 gr</span>
+                                    <span class="pricing-item-price">22 soles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn-action" onclick="addToCart('Mango', 'opt-mango')">
+                            <i class="fa-solid fa-cart-shopping"></i> Pedir Mango
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 4: Cerezos -->
+                <article class="product-card" data-name="cerezos cerezas">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1528821128474-27f963b062bf?auto=format&fit=crop&w=600&q=80" alt="Cerezos">
+                        <span class="product-badge">Antiinflamatorio</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Cerezos</h3>
+                        <p class="product-description">Cerezas seleccionadas deshidratadas lentamente. Destacan por su intenso color rojo y alto contenido en hierro.</p>
+                        <div class="product-pricing">
+                            <span class="pricing-title">Presentaciones y Precios</span>
+                            <div class="pricing-list">
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-cerezos" value="50 gr" data-price="7" checked> Bolsa 50 gr</span>
+                                    <span class="pricing-item-price">7 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-cerezos" value="100 gr" data-price="12"> Bolsa 100 gr</span>
+                                    <span class="pricing-item-price">12 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-cerezos" value="200 gr" data-price="22"> Bolsa 200 gr</span>
+                                    <span class="pricing-item-price">22 soles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn-action" onclick="addToCart('Cerezos', 'opt-cerezos')">
+                            <i class="fa-solid fa-cart-shopping"></i> Pedir Cerezos
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 5: Piña -->
+                <article class="product-card" data-name="pina piñaan">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=600&q=80" alt="Piña Deshidratada">
+                        <span class="product-badge">Digestivo</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Piña</h3>
+                        <p class="product-description">Rodajas de piña jugosa concentrada. Contienen bromelina natural, ideal para favorecer una digestión ligera.</p>
+                        <div class="product-pricing">
+                            <span class="pricing-title">Presentaciones y Precios</span>
+                            <div class="pricing-list">
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-pina" value="50 gr" data-price="7" checked> Bolsa 50 gr</span>
+                                    <span class="pricing-item-price">7 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-pina" value="100 gr" data-price="12"> Bolsa 100 gr</span>
+                                    <span class="pricing-item-price">12 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-pina" value="200 gr" data-price="22"> Bolsa 200 gr</span>
+                                    <span class="pricing-item-price">22 soles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn-action" onclick="addToCart('Piña', 'opt-pina')">
+                            <i class="fa-solid fa-cart-shopping"></i> Pedir Piña
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 6: Kiwi -->
+                <article class="product-card" data-name="kiwi kiwis">
+                    <div class="product-img-wrapper">
+                        <img src="img/kiwi.webp" alt="Kiwi">
+                        <span class="product-badge">Fibra Activa</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Kiwi</h3>
+                        <p class="product-description">Exóticas rodajas de kiwi verde. Un balance perfecto entre ácido y dulce, repleto de fibra dietética.</p>
+                        <div class="product-pricing">
+                            <span class="pricing-title">Presentaciones y Precios</span>
+                            <div class="pricing-list">
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-kiwi" value="50 gr" data-price="7" checked> Bolsa 50 gr</span>
+                                    <span class="pricing-item-price">7 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-kiwi" value="100 gr" data-price="12"> Bolsa 100 gr</span>
+                                    <span class="pricing-item-price">12 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-kiwi" value="200 gr" data-price="22"> Bolsa 200 gr</span>
+                                    <span class="pricing-item-price">22 soles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn-action" onclick="addToCart('Kiwi', 'opt-kiwi')">
+                            <i class="fa-solid fa-cart-shopping"></i> Pedir Kiwi
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 7: Plátano -->
+                <article class="product-card" data-name="platano banana">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=600&q=80" alt="Chips de Plátano">
+                        <span class="product-badge">Potasio & Energía</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Plátano</h3>
+                        <p class="product-description">Chips crujientes de plátano deshidratado sin aceites ni frituras. Fuente natural de potasio.</p>
+                        <div class="product-pricing">
+                            <span class="pricing-title">Presentaciones y Precios</span>
+                            <div class="pricing-list">
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-platano" value="50 gr" data-price="7" checked> Bolsa 50 gr</span>
+                                    <span class="pricing-item-price">7 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-platano" value="100 gr" data-price="12"> Bolsa 100 gr</span>
+                                    <span class="pricing-item-price">12 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-platano" value="200 gr" data-price="22"> Bolsa 200 gr</span>
+                                    <span class="pricing-item-price">22 soles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn-action" onclick="addToCart('Plátano', 'opt-platano')">
+                            <i class="fa-solid fa-cart-shopping"></i> Pedir Plátano
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 8: Naranja -->
+                <article class="product-card" data-name="naranja naranjas">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=600&q=80" alt="Naranja Deshidratada">
+                        <span class="product-badge">Cítrico Natural</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Naranja</h3>
+                        <p class="product-description">Rodajas aromáticas de naranja deshidratada. Ideales para comer directo o acompañar infusiones.</p>
+                        <div class="product-pricing">
+                            <span class="pricing-title">Presentaciones y Precios</span>
+                            <div class="pricing-list">
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-naranja" value="50 gr" data-price="7" checked> Bolsa 50 gr</span>
+                                    <span class="pricing-item-price">7 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-naranja" value="100 gr" data-price="12"> Bolsa 100 gr</span>
+                                    <span class="pricing-item-price">12 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-naranja" value="200 gr" data-price="22"> Bolsa 200 gr</span>
+                                    <span class="pricing-item-price">22 soles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn-action" onclick="addToCart('Naranja', 'opt-naranja')">
+                            <i class="fa-solid fa-cart-shopping"></i> Pedir Naranja
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 9: Manzana -->
+                <article class="product-card" data-name="manzana manzanas">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=600&q=80" alt="Manzana Deshidratada">
+                        <span class="product-badge">Ligero & Saciante</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Manzana</h3>
+                        <p class="product-description">Suaves aros de manzana deshidratada con un toque dulce y aromático. Rico en pectina natural.</p>
+                        <div class="product-pricing">
+                            <span class="pricing-title">Presentaciones y Precios</span>
+                            <div class="pricing-list">
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-manzana" value="50 gr" data-price="7" checked> Bolsa 50 gr</span>
+                                    <span class="pricing-item-price">7 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-manzana" value="100 gr" data-price="12"> Bolsa 100 gr</span>
+                                    <span class="pricing-item-price">12 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-manzana" value="200 gr" data-price="22"> Bolsa 200 gr</span>
+                                    <span class="pricing-item-price">22 soles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn-action" onclick="addToCart('Manzana', 'opt-manzana')">
+                            <i class="fa-solid fa-cart-shopping"></i> Pedir Manzana
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 10: Papaya -->
+                <article class="product-card" data-name="papaya papayas">
+                    <div class="product-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1517282009859-f000ec3b26fe?auto=format&fit=crop&w=600&q=80" alt="Papaya Deshidratada">
+                        <span class="product-badge">Salud Intestinal</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Papaya</h3>
+                        <p class="product-description">Trozos de papaya deshidratada rica en papaína y vitaminas A y C. Cuida tu bienestar digestivo.</p>
+                        <div class="product-pricing">
+                            <span class="pricing-title">Presentaciones y Precios</span>
+                            <div class="pricing-list">
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-papaya" value="50 gr" data-price="7" checked> Bolsa 50 gr</span>
+                                    <span class="pricing-item-price">7 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-papaya" value="100 gr" data-price="12"> Bolsa 100 gr</span>
+                                    <span class="pricing-item-price">12 soles</span>
+                                </label>
+                                <label class="pricing-option-label">
+                                    <span><input type="radio" name="opt-papaya" value="200 gr" data-price="22"> Bolsa 200 gr</span>
+                                    <span class="pricing-item-price">22 soles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn-action" onclick="addToCart('Papaya', 'opt-papaya')">
+                            <i class="fa-solid fa-cart-shopping"></i> Pedir Papaya
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Mensaje sin resultados -->
+                <div id="noResultsMsg" class="no-results-msg">
+                    No encontramos ninguna fruta con ese nombre. ¡Prueba buscando otra opción!
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: NOSOTROS -->
+        <section id="sec-nosotros" class="page-section">
+            <div class="story-container">
+                <div class="story-main-grid">
+                    <div class="story-text-content">
+                        <span class="hero-badge" style="margin-bottom: 16px;"><i class="fa-solid fa-heart"></i> Nuestra Esencia</span>
+                        <h2>Hecho con pasión, <span>100% natural desde Jaén</span></h2>
+                        <p>Hola, me alegra que estés aquí. Nací con el propósito de transformar la manera en que nos alimentamos. Desde el corazón de Jaén, selecciono personalmente cada fruta para convertirla en un snack crujiente, honesto y lleno de vida.</p>
+                        <p>Cada bolsa que preparo lleva consigo un compromiso profundo con tu bienestar: entregarte un bocado dulce, natural y sin culpas que te acompañe en cada paso de tu rutina diaria.</p>
+                    </div>
+                    <div class="story-img-showcase">
+                        <span class="story-img-badge">Presentación Real</span>
+                        <img src="img/general.png" alt="Bolsa de Fruta Deshidratada NUTRIFRUTY">
+                    </div>
+                </div>
+
+                <div class="nosotros-boxes-grid">
+                    <div class="nosotros-info-box">
+                        <div class="box-icon-wrap">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3>Nuestra Misión</h3>
+                        <p>Ofrecerte snacks 100% naturales y artesanales que potencien tu energía y cuiden tu salud, revalorizando la riqueza de las frutas locales sin aditivos.</p>
+                        <ul class="box-highlights-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Cero aditivos químicos</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Fruta fresca seleccionada</li>
+                        </ul>
+                    </div>
+
+                    <div class="nosotros-info-box">
+                        <div class="box-icon-wrap">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <h3>Nuestra Visión</h3>
+                        <p>Convertirnos en tu marca aliada y favorita de alimentación saludable, inspirando un estilo de vida consciente, activo y conectado con lo auténtico.</p>
+                        <ul class="box-highlights-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Expansión sostenible</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Innovación constante</li>
+                        </ul>
+                    </div>
+
+                    <div class="nosotros-info-box">
+                        <div class="box-icon-wrap">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <h3>Nuestros Valores</h3>
+                        <p>Los pilares fundamentales que guían cada proceso de deshidratación y cada entrega directa a tus manos con total transparencia.</p>
+                        <ul class="box-highlights-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>Autenticidad:</strong> Sin engaños.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> <strong>Cercanía:</strong> Trato cálido.</li>
+                        </ul>
+                    </div>
+
+                    <div class="nosotros-info-box">
+                        <div class="box-icon-wrap">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                        </div>
+                        <h3>Compromiso Local</h3>
+                        <p>Trabajamos de la mano con agricultores de la región para potenciar la economía circular y aprovechar de forma eficiente toda la cosecha.</p>
+                        <ul class="box-highlights-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Apoyo al productor local</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Cero desperdicio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: PIDE AHORA -->
+        <section id="sec-pide-ahora" class="page-section">
+            <div class="section-header">
+                <span>Tu Pedido en Línea</span>
+                <h2>Carrito y Boleta de Compra</h2>
+                <p>Revisa los productos seleccionados, ajusta tu orden y envía la información directamente para procesar tu entrega.</p>
+            </div>
+
+            <div class="checkout-layout">
+                <div class="checkout-cart-box">
+                    <h3><i class="fa-solid fa-basket-shopping" style="color: var(--primary-orange);"></i> Productos en tu Carrito</h3>
+                    <div class="cart-items-list" id="cartItemsList">
+                        <div class="empty-cart-msg">Tu carrito está vacío. ¡Explora el catálogo y añade tus frutas favoritas!</div>
+                    </div>
+                </div>
+
+                <div class="checkout-receipt-box">
+                    <h3><i class="fa-solid fa-receipt" style="color: var(--primary-orange);"></i> Resumen de Pago</h3>
+                    <div class="receipt">
+                        <div class="receipt-header">
+                            <h4>NUTRIFRUTY</h4>
+                            <p>Jaén, Perú • R.U.C. Artesanal</p>
+                            <p id="receiptDate"></p>
+                        </div>
+                        <div class="receipt-body" id="receiptItemsContainer">
+                            <div style="font-size: 12px; color: #888; text-align: center;">Sin ítems agregados</div>
+                        </div>
+                        <div class="receipt-total">
+                            <span>TOTAL A PAGAR:</span>
+                            <span id="receiptTotalAmount">0 soles</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-checkout-whatsapp" onclick="sendToWhatsApp()">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i> Enviar Pedido por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA (FOOTER) COLOR NARANJA -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3><img src="res.jfif" alt="Logo" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;"> NUTRIFRUTY</h3>
+                <p>Snacks 100% naturales, crujientes y artesanales elaborados en Jaén con frutas cuidadosamente seleccionadas para cuidar tu energía y bienestar.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a onclick="switchSection('inicio')"><i class="fa-solid fa-chevron-right"></i> Inicio</a></li>
+                    <li><a onclick="switchSection('beneficios')"><i class="fa-solid fa-chevron-right"></i> Por qué te hace bien</a></li>
+                    <li><a onclick="switchSection('catalogo')"><i class="fa-solid fa-chevron-right"></i> Catálogo Real</a></li>
+                    <li><a onclick="switchSection('nosotros')"><i class="fa-solid fa-chevron-right"></i> Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto Directo</h3>
+                <div class="footer-contact-info">
+                    <div>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>949 971 525</span>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Jaén, Cajamarca, Perú</span>
+                    </div>
+                    <div>
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>Pedidos por WhatsApp activos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NUTRIFRUTY. Todos los derechos reservados. Hecho con amor y sabor natural.</p>
+        </div>
+    </footer>
+
+    <!-- Notificación Toast Dinámica -->
+    <div id="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastMsg">Producto añadido al carrito</span>
+    </div>
+
+    <script>
+        let cart = [];
+        const sections = ['inicio', 'beneficios', 'catalogo', 'nosotros', 'pide-ahora'];
+
+        function switchSection(targetId, updateHistory = true) {
+            if(!sections.includes(targetId)) return;
+
+            sections.forEach(sec => {
+                const el = document.getElementById('sec-' + sec);
+                if(el) el.classList.remove('active-section');
+                const link = document.getElementById('link-' + sec);
+                if(link) link.classList.remove('active-link');
+            });
+
+            const targetSec = document.getElementById('sec-' + targetId);
+            if(targetSec) targetSec.classList.add('active-section');
+
+            const targetLink = document.getElementById('link-' + targetId);
+            if(targetLink) targetLink.classList.add('active-link');
+
+            if(updateHistory) {
+                history.pushState({ section: targetId }, "", "#" + targetId);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            const navLinks = document.getElementById('navLinks');
+            const hamburgerIcon = document.querySelector('#hamburger i');
+            if(navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                hamburgerIcon.classList.remove('fa-xmark');
+                hamburgerIcon.classList.add('fa-bars');
+            }
+        }
+
+        window.addEventListener('popstate', (event) => {
+            const hash = window.location.hash.replace('#', '');
+            if(sections.includes(hash)) {
+                switchSection(hash, false);
+            } else {
+                switchSection('inicio', false);
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if(sections.includes(hash)) {
+                switchSection(hash, false);
+            } else {
+                switchSection('inicio', false);
+            }
+            updateReceiptDate();
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const hamburgerIcon = hamburger.querySelector('i');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if(navLinks.classList.contains('active')) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-xmark');
+            } else {
+                hamburgerIcon.classList.remove('fa-xmark');
+                hamburgerIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Buscador en Catálogo Real
+        function filterCatalog() {
+            const query = document.getElementById('catalogSearchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('#productsGrid .product-card');
+            const noResults = document.getElementById('noResultsMsg');
+            let matchCount = 0;
+
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                const title = card.querySelector('.product-title').textContent.toLowerCase();
+                const desc = card.querySelector('.product-description').textContent.toLowerCase();
+
+                if(name.includes(query) || title.includes(query) || desc.includes(query)) {
+                    card.style.display = 'flex';
+                    matchCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if(matchCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        function addToCart(productName, radioGroupName) {
+            const selectedRadio = document.querySelector(`input[name="${radioGroupName}"]:checked`);
+            if(!selectedRadio) return;
+
+            const size = selectedRadio.value;
+            const price = parseFloat(selectedRadio.getAttribute('data-price'));
+
+            const existingItem = cart.find(item => item.name === productName && item.size === size);
+            if(existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: productName,
+                    size: size,
+                    price: price,
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            showToast(`¡${productName} (${size}) añadido al carrito!`);
+        }
+
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            if(cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsList = document.getElementById('cartItemsList');
+            const receiptItemsContainer = document.getElementById('receiptItemsContainer');
+            const cartBadgeCount = document.getElementById('cartBadgeCount');
+            const receiptTotalAmount = document.getElementById('receiptTotalAmount');
+
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartBadgeCount.textContent = totalCount;
+
+            if(cart.length === 0) {
+                cartItemsList.innerHTML = `<div class="empty-cart-msg">Tu carrito está vacío. ¡Explora el catálogo y añade tus frutas favoritas!</div>`;
+                receiptItemsContainer.innerHTML = `<div style="font-size: 12px; color: #888; text-align: center;">Sin ítems agregados</div>`;
+                receiptTotalAmount.textContent = `0 soles`;
+                return;
+            }
+
+            let cartHtml = '';
+            let receiptHtml = '';
+            let grandTotal = 0;
+
+            cart.forEach((item, index) => {
+                const subtotal = item.price * item.quantity;
+                grandTotal += subtotal;
+
+                cartHtml += `
+                    <div class="cart-item-row">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <span>Presentación: ${item.size} | S/. ${item.price} c/u</span>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="btn-remove" onclick="updateQuantity(${index}, -1)"><i class="fa-solid fa-minus"></i></button>
+                            <span>${item.quantity}</span>
+                            <button class="btn-remove" onclick="updateQuantity(${index}, 1)"><i class="fa-solid fa-plus"></i></button>
+                            <button class="btn-remove" onclick="removeFromCart(${index})" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+
+                receiptHtml += `
+                    <div class="receipt-line">
+                        <span>${item.quantity}x ${item.name} (${item.size})</span>
+                        <span>S/. ${subtotal}</span>
+                    </div>
+                `;
+            });
+
+            cartItemsList.innerHTML = cartHtml;
+            receiptItemsContainer.innerHTML = receiptHtml;
+            receiptTotalAmount.textContent = `${grandTotal} soles`;
+        }
+
+        function updateReceiptDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+            const dateStr = now.toLocaleDateString('es-PE', options);
+            const dateEl = document.getElementById('receiptDate');
+            if(dateEl) dateEl.textContent = `Fecha: ${dateStr}`;
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function sendToWhatsApp() {
+            if(cart.length === 0) {
+                showToast('Agrega al menos un producto antes de pedir.');
+                return;
+            }
+
+            let message = "¡Hola! Quisiera realizar el siguiente pedido en NUTRIFRUTY:\n\n*BOLETA DE COMPRA*\n";
+            let grandTotal = 0;
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                grandTotal += subtotal;
+                message += `- ${item.quantity}x ${item.name} (${item.size}) : S/. ${subtotal}\n`;
+            });
+
+            message += `\n*TOTAL A PAGAR: S/. ${grandTotal}*\n\n¡Quedo atento(a) para coordinar la entrega!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const phoneNumber = "51949971525"; // Número actualizado solicitado 949 971 525 con prefijo de Perú (51)
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+</body>
+</html>
