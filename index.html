@@ -1183,6 +1183,223 @@
             .floating-badge.badge-1 { left: 10px; }
             .floating-badge.badge-2 { right: 10px; }
         }
+
+        /* ===== CHATBOT NUTRIFRUTY ===== */
+        #toast { bottom: 110px; }
+
+        .nf-chat-launcher {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 1900;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 14px 22px 14px 16px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 12px 28px rgba(255, 107, 0, 0.4);
+            transition: var(--transition);
+        }
+        .nf-chat-launcher:hover { transform: translateY(-3px); }
+        .nf-chat-launcher:focus-visible { outline: 3px solid var(--bright-yellow); outline-offset: 3px; }
+        .nf-chat-launcher .nf-launcher-icon {
+            width: 34px; height: 34px;
+            background: var(--white);
+            color: var(--primary-orange);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px;
+        }
+        .nf-chat-launcher.nf-hidden { opacity: 0; pointer-events: none; transform: scale(0.8); }
+
+        .nf-chat-window {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 1950;
+            width: 380px;
+            max-width: calc(100vw - 32px);
+            height: 580px;
+            max-height: calc(100vh - 110px);
+            background: #FFFDF9;
+            border-radius: 26px;
+            box-shadow: 0 25px 60px rgba(45, 27, 13, 0.28);
+            border: 1px solid rgba(255, 107, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px) scale(0.97);
+            pointer-events: none;
+            transition: var(--transition);
+        }
+        .nf-chat-window.nf-open { opacity: 1; transform: none; pointer-events: auto; }
+
+        .nf-chat-header {
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white);
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nf-chat-avatar {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: var(--bright-yellow);
+            color: var(--dark-brown);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .nf-chat-header-text { flex: 1; }
+        .nf-chat-header-text strong { font-family: 'Outfit', sans-serif; font-size: 17px; display: block; }
+        .nf-chat-header-text span { font-size: 12px; opacity: 0.9; display: flex; align-items: center; gap: 6px; }
+        .nf-chat-header-text span::before {
+            content: ''; width: 8px; height: 8px; border-radius: 50%; background: #7CFF8A; display: inline-block;
+        }
+        .nf-chat-close {
+            background: rgba(255,255,255,0.2);
+            border: none; color: var(--white);
+            width: 34px; height: 34px; border-radius: 50%;
+            cursor: pointer; font-size: 16px;
+        }
+        .nf-chat-close:hover { background: rgba(255,255,255,0.35); }
+
+        .nf-chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: linear-gradient(180deg, #FFFDF9 0%, #FFF7E6 100%);
+        }
+        .nf-msg {
+            max-width: 86%;
+            padding: 11px 15px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.55;
+            word-wrap: break-word;
+            animation: nf-pop 0.3s ease;
+        }
+        .nf-msg.nf-bot {
+            align-self: flex-start;
+            background: var(--white);
+            color: var(--text-dark);
+            border: 1px solid rgba(255, 107, 0, 0.12);
+            border-bottom-left-radius: 6px;
+            box-shadow: 0 4px 12px rgba(45, 27, 13, 0.05);
+        }
+        .nf-msg.nf-user {
+            align-self: flex-end;
+            background: var(--dark-brown);
+            color: var(--white);
+            border-bottom-right-radius: 6px;
+        }
+        .nf-msg strong { color: var(--dark-mustard); }
+        .nf-msg.nf-user strong { color: var(--bright-yellow); }
+        .nf-msg ul { margin: 6px 0 2px 0; padding-left: 18px; }
+        .nf-msg li { margin-bottom: 3px; }
+        .nf-msg .nf-note { display: block; font-size: 12px; color: var(--text-light); margin-top: 8px; }
+        .nf-msg-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+        .nf-msg-actions button, .nf-msg-actions a {
+            font-family: inherit;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 7px 12px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            background: var(--primary-orange);
+            color: var(--white);
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+        .nf-msg-actions a.nf-wa { background: #25D366; }
+
+        .nf-typing { display: flex; gap: 4px; padding: 14px 16px; }
+        .nf-typing span {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--secondary-orange);
+            animation: nf-bounce 1.2s infinite;
+        }
+        .nf-typing span:nth-child(2) { animation-delay: 0.15s; }
+        .nf-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+        .nf-chat-chips {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 10px 14px;
+            background: var(--white);
+            border-top: 1px solid rgba(255, 107, 0, 0.1);
+            scrollbar-width: none;
+        }
+        .nf-chat-chips::-webkit-scrollbar { display: none; }
+        .nf-chip {
+            flex-shrink: 0;
+            background: var(--light-yellow);
+            color: var(--dark-mustard);
+            border: 1px solid rgba(255, 199, 0, 0.5);
+            border-radius: 30px;
+            padding: 7px 13px;
+            font-family: inherit;
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .nf-chip:hover { background: var(--bright-yellow); color: var(--dark-brown); }
+
+        .nf-chat-input {
+            display: flex;
+            gap: 8px;
+            padding: 12px 14px 14px;
+            background: var(--white);
+        }
+        .nf-chat-input input {
+            flex: 1;
+            border: 2px solid rgba(255, 107, 0, 0.2);
+            border-radius: 30px;
+            padding: 11px 16px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-dark);
+            min-width: 0;
+        }
+        .nf-chat-input input:focus { outline: none; border-color: var(--primary-orange); }
+        .nf-chat-input button {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: var(--white);
+            font-size: 16px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        @keyframes nf-pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        @keyframes nf-bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
+
+        @media (max-width: 600px) {
+            .nf-chat-launcher .nf-launcher-text { display: none; }
+            .nf-chat-launcher { padding: 12px; right: 16px; bottom: 16px; }
+            .nf-chat-window { right: 0; bottom: 0; width: 100vw; max-width: 100vw; height: 100%; max-height: 100%; border-radius: 0; }
+            #toast { bottom: 90px; right: 16px; left: 16px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .nf-msg, .nf-typing span { animation: none; }
+        }
     </style>
 </head>
 <body>
@@ -1819,6 +2036,29 @@
         <span id="toastMsg">Producto añadido al carrito</span>
     </div>
 
+    <!-- CHATBOT NUTRIFRUTY -->
+    <button class="nf-chat-launcher" id="nfChatLauncher" aria-label="Abrir asistente de productos">
+        <span class="nf-launcher-icon"><i class="fa-solid fa-comment-dots"></i></span>
+        <span class="nf-launcher-text">¿Dudas? Pregúntame</span>
+    </button>
+
+    <div class="nf-chat-window" id="nfChatWindow" role="dialog" aria-label="Asistente NUTRIFRUTY" aria-hidden="true">
+        <div class="nf-chat-header">
+            <div class="nf-chat-avatar"><i class="fa-solid fa-lemon"></i></div>
+            <div class="nf-chat-header-text">
+                <strong>Fruty, tu asistente</strong>
+                <span>En línea • Responde al instante</span>
+            </div>
+            <button class="nf-chat-close" id="nfChatClose" aria-label="Cerrar chat"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="nf-chat-messages" id="nfChatMessages" aria-live="polite"></div>
+        <div class="nf-chat-chips" id="nfChatChips"></div>
+        <form class="nf-chat-input" id="nfChatForm" autocomplete="off">
+            <input type="text" id="nfChatInput" placeholder="Ej: ¿Qué vitaminas tiene el mango?" aria-label="Escribe tu pregunta">
+            <button type="submit" aria-label="Enviar"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+    </div>
+
     <script>
         let cart = [];
         const sections = ['inicio', 'beneficios', 'catalogo', 'nosotros', 'pide-ahora'];
@@ -2042,6 +2282,402 @@
             const phoneNumber = "51949971525"; // Número actualizado solicitado 949 971 525 con prefijo de Perú (51)
             window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
         }
+
+        /* ===================== CHATBOT NUTRIFRUTY ===================== */
+        (function () {
+            const WHATSAPP = '51949971525';
+
+            // Base de conocimiento de los productos (edita aquí para cambiar lo que responde el bot)
+            const NF_PRODUCTS = {
+                'mix-tropical': {
+                    name: 'Mix Tropical', group: 'opt-mix-tropical', emoji: '🥭🍓🥝',
+                    aliases: ['mix', 'mixto', 'mixta', 'tropical', 'combinado', 'surtido'],
+                    intro: 'Combina fresa, mango, kiwi, piña, plátano, manzana y papaya en una sola bolsa.',
+                    vitamins: ['Vitamina C (fresa, kiwi, piña, papaya)', 'Vitamina A (mango y papaya)', 'Vitamina B6 (plátano)', 'Vitamina K (kiwi)'],
+                    minerals: ['Potasio', 'Magnesio', 'Manganeso'],
+                    props: ['El más completo: reúne los beneficios de 7 frutas', 'Fibra variada para la digestión', 'Antioxidantes de distintos colores de fruta', 'Energía rápida y sostenida'],
+                    ideal: 'Quien quiere de todo un poco, loncheras y para compartir.'
+                },
+                'fresa': {
+                    name: 'Fresa', group: 'opt-fresa', emoji: '🍓',
+                    aliases: ['fresa', 'fresas', 'frutilla', 'frutillas'],
+                    intro: 'Crujientes láminas de fresa, dulces y ligeramente ácidas.',
+                    vitamins: ['Vitamina C', 'Folato (vitamina B9)'],
+                    minerals: ['Manganeso', 'Potasio'],
+                    props: ['Rica en antioxidantes (antocianinas y ácido elágico)', 'Apoya las defensas', 'Aporta fibra y pocas calorías por porción'],
+                    ideal: 'Reforzar defensas y como snack ligero.'
+                },
+                'mango': {
+                    name: 'Mango', group: 'opt-mango', emoji: '🥭',
+                    aliases: ['mango', 'mangos'],
+                    intro: 'Tiras de mango con textura suave y masticable, de sabor intenso.',
+                    vitamins: ['Vitamina A (betacarotenos)', 'Vitamina C', 'Vitamina E', 'Vitamina B6', 'Folato'],
+                    minerals: ['Potasio', 'Magnesio'],
+                    props: ['Cuida la vista y la piel gracias a los betacarotenos', 'Energía natural para estudiar o entrenar', 'Fibra que favorece la digestión', 'Calma el antojo de dulce'],
+                    ideal: 'Deportistas, estudiantes y amantes de lo dulce.'
+                },
+                'cerezos': {
+                    name: 'Cerezos', group: 'opt-cerezos', emoji: '🍒',
+                    aliases: ['cereza', 'cerezas', 'cerezo', 'cerezos'],
+                    intro: 'Cerezas seleccionadas y deshidratadas lentamente, de intenso color rojo.',
+                    vitamins: ['Vitamina C', 'Vitamina A'],
+                    minerals: ['Potasio', 'Hierro'],
+                    props: ['Antocianinas con efecto antiinflamatorio', 'Apoyan la recuperación muscular después del ejercicio', 'Contienen melatonina natural, asociada a un mejor descanso', 'Antioxidantes que protegen las células'],
+                    ideal: 'Deportistas y quienes buscan un snack antiinflamatorio.'
+                },
+                'pina': {
+                    name: 'Piña', group: 'opt-pina', emoji: '🍍',
+                    aliases: ['pina', 'pinas', 'anana', 'ananas'],
+                    intro: 'Rodajas de piña concentrada, dulce y jugosa.',
+                    vitamins: ['Vitamina C', 'Vitamina B1 (tiamina)', 'Vitamina B6'],
+                    minerals: ['Manganeso', 'Potasio'],
+                    props: ['Aporta bromelina, enzima natural de la piña asociada a una digestión ligera', 'El manganeso ayuda a huesos fuertes', 'Refrescante y energizante'],
+                    ideal: 'Después de comidas pesadas y para cuidar la digestión.'
+                },
+                'kiwi': {
+                    name: 'Kiwi', group: 'opt-kiwi', emoji: '🥝',
+                    aliases: ['kiwi', 'kiwis'],
+                    intro: 'Rodajas de kiwi verde con balance perfecto entre ácido y dulce.',
+                    vitamins: ['Vitamina C (de las frutas más altas en vitamina C)', 'Vitamina K', 'Vitamina E', 'Folato'],
+                    minerals: ['Potasio', 'Magnesio'],
+                    props: ['Repleto de fibra dietética: ayuda al tránsito intestinal', 'Fortalece las defensas', 'Antioxidantes para la piel'],
+                    ideal: 'Mejorar la digestión y reforzar defensas.'
+                },
+                'platano': {
+                    name: 'Plátano', group: 'opt-platano', emoji: '🍌',
+                    aliases: ['platano', 'platanos', 'banana', 'bananas', 'banano', 'guineo'],
+                    intro: 'Chips crujientes de plátano deshidratado, sin aceites ni frituras.',
+                    vitamins: ['Vitamina B6', 'Vitamina C'],
+                    minerals: ['Potasio (su gran estrella)', 'Magnesio'],
+                    props: ['Energía rápida gracias a sus carbohidratos naturales', 'El potasio ayuda a prevenir calambres', 'Apoya la función muscular y del corazón', 'Sin frituras: más saludable que los chips tradicionales'],
+                    ideal: 'Antes o después de entrenar y para la lonchera.'
+                },
+                'naranja': {
+                    name: 'Naranja', group: 'opt-naranja', emoji: '🍊',
+                    aliases: ['naranja', 'naranjas'],
+                    intro: 'Rodajas aromáticas de naranja, para comer directo o acompañar infusiones.',
+                    vitamins: ['Vitamina C', 'Folato', 'Vitamina B1'],
+                    minerals: ['Calcio', 'Potasio'],
+                    props: ['Flavonoides cítricos (hesperidina) con acción antioxidante', 'Apoya las defensas', 'Perfecta en infusiones, tés y coctelería'],
+                    ideal: 'Temporada de frío, infusiones y decoración de bebidas.'
+                },
+                'manzana': {
+                    name: 'Manzana', group: 'opt-manzana', emoji: '🍎',
+                    aliases: ['manzana', 'manzanas'],
+                    intro: 'Suaves aros de manzana con toque dulce y aromático.',
+                    vitamins: ['Vitamina C', 'Vitamina K'],
+                    minerals: ['Potasio'],
+                    props: ['Rica en pectina, una fibra soluble que da saciedad', 'Polifenoles (quercetina) antioxidantes', 'Ayuda a regular el tránsito intestinal', 'Ligera y suave, ideal para niños'],
+                    ideal: 'Quienes cuidan su peso y para los más pequeños.'
+                },
+                'papaya': {
+                    name: 'Papaya', group: 'opt-papaya', emoji: '🧡',
+                    aliases: ['papaya', 'papayas', 'lechosa'],
+                    intro: 'Trozos de papaya dulce y suave.',
+                    vitamins: ['Vitamina A', 'Vitamina C', 'Folato'],
+                    minerals: ['Potasio', 'Magnesio'],
+                    props: ['Contiene papaína, enzima digestiva natural', 'Cuida la salud intestinal', 'Licopeno y betacarotenos antioxidantes', 'Buena para la piel y la vista'],
+                    ideal: 'Salud digestiva y cuidado de la piel.'
+                }
+            };
+
+            // Nutrientes -> productos (ordenados de mayor a menor aporte)
+            const NF_NUTRIENTS = [
+                { keys: ['vitamina c', 'vit c', 'acido ascorbico'], label: 'Vitamina C', list: ['kiwi', 'fresa', 'papaya', 'naranja', 'pina', 'mango', 'mix-tropical'] },
+                { keys: ['vitamina a', 'vit a', 'betacaroteno', 'betacarotenos'], label: 'Vitamina A', list: ['mango', 'papaya', 'cerezos', 'mix-tropical'] },
+                { keys: ['vitamina e', 'vit e'], label: 'Vitamina E', list: ['mango', 'kiwi'] },
+                { keys: ['vitamina k', 'vit k'], label: 'Vitamina K', list: ['kiwi', 'manzana'] },
+                { keys: ['vitamina b', 'complejo b', 'b6', 'b1', 'tiamina', 'folato', 'acido folico', 'b9'], label: 'Vitaminas del complejo B', list: ['platano', 'mango', 'pina', 'fresa', 'naranja', 'papaya'] },
+                { keys: ['potasio'], label: 'Potasio', list: ['platano', 'mango', 'kiwi', 'papaya', 'cerezos'] },
+                { keys: ['magnesio'], label: 'Magnesio', list: ['platano', 'mango', 'kiwi', 'papaya'] },
+                { keys: ['manganeso'], label: 'Manganeso', list: ['pina', 'fresa'] },
+                { keys: ['hierro'], label: 'Hierro', list: ['cerezos', 'mix-tropical'] },
+                { keys: ['calcio'], label: 'Calcio', list: ['naranja'] },
+                { keys: ['fibra'], label: 'Fibra', list: ['kiwi', 'manzana', 'papaya', 'mango', 'mix-tropical'] },
+                { keys: ['antioxidante', 'antioxidantes', 'antocianina', 'antocianinas'], label: 'Antioxidantes', list: ['fresa', 'cerezos', 'kiwi', 'naranja', 'manzana'] }
+            ];
+
+            // Objetivos de salud -> recomendación
+            const NF_GOALS = [
+                { keys: ['energia', 'cansado', 'cansancio', 'deporte', 'deportista', 'entrenar', 'gimnasio', 'gym', 'correr', 'estudiar', 'calambre', 'calambres'], text: 'Para <strong>energía y actividad física</strong> te recomiendo:', list: ['platano', 'mango', 'cerezos', 'mix-tropical'] },
+                { keys: ['digestion', 'digestivo', 'estrenimiento', 'estrenido', 'intestino', 'intestinal', 'transito', 'hinchazon', 'pesadez'], text: 'Para cuidar tu <strong>digestión</strong> te recomiendo:', list: ['papaya', 'pina', 'kiwi', 'manzana'] },
+                { keys: ['defensa', 'defensas', 'resfrio', 'gripe', 'inmune', 'inmunologico', 'sistema inmune'], text: 'Para <strong>reforzar tus defensas</strong> te recomiendo:', list: ['kiwi', 'fresa', 'naranja', 'papaya'] },
+                { keys: ['piel', 'vista', 'ojos', 'cabello', 'belleza'], text: 'Para tu <strong>piel y vista</strong> te recomiendo:', list: ['mango', 'papaya', 'kiwi'] },
+                { keys: ['corazon', 'presion', 'cardiovascular', 'colesterol'], text: 'Para apoyar tu <strong>corazón</strong> te recomiendo:', list: ['platano', 'manzana', 'cerezos'] },
+                { keys: ['peso', 'adelgazar', 'bajar de peso', 'dieta', 'saciedad', 'saciante', 'ansiedad'], text: 'Si cuidas tu <strong>peso</strong>, estas dan más saciedad (en porciones moderadas):', list: ['manzana', 'kiwi', 'fresa'] },
+                { keys: ['nino', 'ninos', 'nina', 'ninas', 'hijo', 'hijos', 'lonchera', 'colegio', 'infantil'], text: 'Para <strong>niños y loncheras</strong> las favoritas son:', list: ['manzana', 'platano', 'mango', 'mix-tropical'] },
+                { keys: ['dormir', 'sueno', 'insomnio', 'descanso', 'inflamacion', 'antiinflamatorio', 'dolor muscular'], text: 'Para <strong>descanso y recuperación</strong> te recomiendo:', list: ['cerezos'] }
+            ];
+
+            const $ = (id) => document.getElementById(id);
+            const launcher = $('nfChatLauncher'), win = $('nfChatWindow'), msgs = $('nfChatMessages');
+            const form = $('nfChatForm'), input = $('nfChatInput'), chipsBox = $('nfChatChips');
+            let greeted = false;
+
+            const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[¿?¡!.,;:]/g, ' ').replace(/\s+/g, ' ').trim();
+            const has = (t, words) => words.some(w => new RegExp('(^|\\s)' + w + '(\\s|$)').test(t) || (w.includes(' ') && t.includes(w)));
+
+            // Precios leídos del catálogo (así siempre coinciden con lo que ve el cliente)
+            function getPrices(key) {
+                const p = NF_PRODUCTS[key];
+                return Array.from(document.querySelectorAll(`input[name="${p.group}"]`)).map(r => {
+                    const label = r.closest('label');
+                    const priceTxt = label ? label.querySelector('.pricing-item-price').textContent.trim() : r.dataset.price + ' soles';
+                    return { size: r.value, price: priceTxt };
+                });
+            }
+
+            function findProducts(t) {
+                return Object.keys(NF_PRODUCTS).filter(k => has(t, NF_PRODUCTS[k].aliases));
+            }
+
+            function productLine(key) {
+                const p = NF_PRODUCTS[key];
+                return `${p.emoji} <strong>${p.name}</strong>`;
+            }
+
+            function productCard(key, focus) {
+                const p = NF_PRODUCTS[key];
+                let html = `${p.emoji} <strong>${p.name}</strong><br>${p.intro}`;
+                if (focus !== 'props') {
+                    html += `<br><br><strong>Vitaminas:</strong><ul>${p.vitamins.map(v => `<li>${v}</li>`).join('')}</ul>`;
+                    html += `<strong>Minerales:</strong> ${p.minerals.join(', ')}.`;
+                }
+                if (focus !== 'vitamins') {
+                    html += `<br><br><strong>Propiedades:</strong><ul>${p.props.map(v => `<li>${v}</li>`).join('')}</ul>`;
+                    html += `<strong>Ideal para:</strong> ${p.ideal}`;
+                }
+                return html;
+            }
+
+            function priceBlock(key) {
+                return `${productLine(key)}<ul>${getPrices(key).map(x => `<li>Bolsa ${x.size}: <strong>${x.price}</strong></li>`).join('')}</ul>`;
+            }
+
+            function orderActions(key) {
+                const sizes = getPrices(key).map(x => x.size);
+                return sizes.map(s => ({ label: `<i class="fa-solid fa-cart-plus"></i> ${s}`, fn: () => nfAdd(key, s) }));
+            }
+
+            function nfAdd(key, size) {
+                const p = NF_PRODUCTS[key];
+                const radio = document.querySelector(`input[name="${p.group}"][value="${size}"]`);
+                if (radio) radio.checked = true;
+                if (typeof addToCart === 'function') addToCart(p.name, p.group);
+                botSay(`¡Listo! Añadí <strong>${p.name} (${size})</strong> a tu carrito. 🛒`, [
+                    { label: '<i class="fa-solid fa-receipt"></i> Ver mi carrito', fn: () => { switchSection('pide-ahora'); closeChat(); } }
+                ]);
+            }
+
+            function waLink(text) {
+                return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+            }
+
+            // ---------- Motor de respuestas ----------
+            function answer(raw) {
+                const t = norm(raw);
+                const prods = findProducts(t);
+                const nutrient = NF_NUTRIENTS.find(n => has(t, n.keys));
+                const goal = NF_GOALS.find(g => has(t, g.keys));
+
+                const I = {
+                    greet: has(t, ['hola', 'buenas', 'buenos dias', 'buenas tardes', 'buenas noches', 'hey', 'saludos']),
+                    thanks: has(t, ['gracias', 'genial', 'perfecto', 'excelente', 'chevere', 'bacan']),
+                    bye: has(t, ['adios', 'chau', 'chao', 'hasta luego', 'nos vemos']),
+                    price: has(t, ['precio', 'precios', 'cuesta', 'cuestan', 'costo', 'cuanto', 'vale', 'valen', 'soles', 'barato', 'presentacion', 'presentaciones', 'tamano', 'tamanos', 'gramos', 'gr']),
+                    vitamins: has(t, ['vitamina', 'vitaminas', 'mineral', 'minerales', 'nutriente', 'nutrientes', 'nutricional', 'contiene', 'tiene', 'aporta']),
+                    props: has(t, ['propiedad', 'propiedades', 'beneficio', 'beneficios', 'sirve', 'bueno', 'buena', 'ayuda', 'salud', 'saludable']),
+                    order: has(t, ['pedir', 'pedido', 'comprar', 'compra', 'ordenar', 'delivery', 'envio', 'envios', 'enviar', 'entrega', 'pago', 'pagar', 'yape', 'plin', 'whatsapp', 'carrito']),
+                    catalog: has(t, ['productos', 'catalogo', 'frutas', 'sabores', 'que venden', 'que tienen', 'ofrecen', 'variedad', 'opciones']),
+                    sugar: has(t, ['azucar', 'azucares', 'endulzado', 'conservante', 'conservantes', 'aditivo', 'aditivos', 'quimico', 'quimicos', 'natural', 'organico', 'gluten', 'vegano', 'aceite', 'frito']),
+                    diabetes: has(t, ['diabetes', 'diabetico', 'diabetica', 'glucosa', 'embarazo', 'embarazada', 'alergia', 'alergico', 'bebe', 'bebes', 'lactancia']),
+                    storage: has(t, ['conservar', 'guardar', 'dura', 'duracion', 'vence', 'vencimiento', 'refrigerar', 'refrigerador', 'humedad', 'almacenar']),
+                    process: has(t, ['deshidrata', 'deshidratado', 'deshidratada', 'proceso', 'elaboran', 'hacen', 'preparan', 'artesanal']),
+                    about: has(t, ['quienes', 'ubicacion', 'donde estan', 'donde queda', 'jaen', 'contacto', 'telefono', 'numero', 'celular']),
+                    compare: has(t, ['mas', 'mejor', 'recomiendas', 'recomienda', 'recomendacion', 'cual', 'que me']),
+                    howEat: has(t, ['como se come', 'como lo como', 'receta', 'recetas', 'yogurt', 'avena', 'infusion', 'combinar', 'porcion', 'cuanto comer'])
+                };
+
+                // 1) Salud sensible
+                if (I.diabetes) {
+                    return {
+                        html: 'Nuestras frutas no tienen azúcar añadida, pero al deshidratarse sus <strong>azúcares naturales se concentran</strong>. Si tienes diabetes, estás embarazada, das de comer a un bebé o tienes alguna alergia, lo mejor es consumir porciones pequeñas y <strong>consultar a tu médico o nutricionista</strong>.<br><br>Las opciones con más fibra (que ayudan a que el azúcar se absorba más lento) son <strong>kiwi, manzana y fresa</strong>.<span class="nf-note">Esta información es orientativa y no reemplaza el consejo de un profesional de salud.</span>'
+                    };
+                }
+
+                // 2) Nutriente concreto sin producto: "¿cuál tiene más vitamina C?"
+                if (nutrient && prods.length === 0) {
+                    return {
+                        html: `Las frutas con más <strong>${nutrient.label}</strong> de nuestro catálogo son:<ul>${nutrient.list.map(k => `<li>${productLine(k)}</li>`).join('')}</ul>¿Quieres que te cuente más de alguna?`,
+                        chips: nutrient.list.slice(0, 3).map(k => `Beneficios de ${NF_PRODUCTS[k].name.toLowerCase()}`)
+                    };
+                }
+
+                // 3) Nutriente + producto: "¿el mango tiene vitamina A?"
+                if (nutrient && prods.length) {
+                    const html = prods.map(k => {
+                        const yes = nutrient.list.includes(k);
+                        return yes
+                            ? `✅ ${productLine(k)} sí es buena fuente de <strong>${nutrient.label}</strong>.`
+                            : `${productLine(k)} no es de las que más ${nutrient.label.toLowerCase()} aporta. Si buscas eso, te conviene más: ${nutrient.list.slice(0, 2).map(x => NF_PRODUCTS[x].name).join(' o ')}.`;
+                    }).join('<br><br>');
+                    return { html };
+                }
+
+                // 4) Producto(s) mencionados
+                if (prods.length) {
+                    if (I.price && !I.vitamins && !I.props) {
+                        return { html: prods.map(priceBlock).join(''), actions: prods.length === 1 ? orderActions(prods[0]) : null };
+                    }
+                    if (I.order) {
+                        return { html: `¡Genial! Elige la presentación de <strong>${NF_PRODUCTS[prods[0]].name}</strong> y la añado a tu carrito:`, actions: orderActions(prods[0]) };
+                    }
+                    const focus = I.vitamins && !I.props ? 'vitamins' : (I.props && !I.vitamins ? 'props' : null);
+                    if (prods.length > 1) {
+                        return {
+                            html: prods.map(k => {
+                                const p = NF_PRODUCTS[k];
+                                return `${productLine(k)}<br><strong>Vitaminas:</strong> ${p.vitamins.map(v => v.split(' (')[0]).join(', ')}<br><strong>Destaca por:</strong> ${p.props[0].toLowerCase()}.`;
+                            }).join('<br><br>')
+                        };
+                    }
+                    return {
+                        html: productCard(prods[0], focus),
+                        actions: [{ label: '<i class="fa-solid fa-tag"></i> Ver precios', fn: () => send(`Precio de ${NF_PRODUCTS[prods[0]].name}`) }, ...orderActions(prods[0]).slice(0, 1)]
+                    };
+                }
+
+                // 5) Objetivos de salud
+                if (goal) {
+                    return {
+                        html: `${goal.text}<ul>${goal.list.map(k => `<li>${productLine(k)}: ${NF_PRODUCTS[k].props[0].toLowerCase()}</li>`).join('')}</ul>`,
+                        chips: goal.list.slice(0, 3).map(k => `Beneficios de ${NF_PRODUCTS[k].name.toLowerCase()}`)
+                    };
+                }
+
+                if (I.price) {
+                    const sample = getPrices('fresa');
+                    return {
+                        html: `Todas nuestras frutas tienen las mismas presentaciones y precios:<ul>${sample.map(x => `<li>Bolsa ${x.size}: <strong>${x.price}</strong></li>`).join('')}</ul>Puedes pedir cualquier sabor en cualquier tamaño.`
+                    };
+                }
+                if (I.order) {
+                    return {
+                        html: 'Pedir es muy fácil:<ul><li>Entra al <strong>Catálogo</strong> y elige fruta y tamaño.</li><li>Pulsa <strong>Pedir</strong> para añadirla al carrito.</li><li>En <strong>¡Pide Ahora!</strong> revisa tu boleta y envíala por <strong>WhatsApp</strong>.</li></ul>Por WhatsApp coordinamos contigo la entrega y el método de pago.',
+                        actions: [
+                            { label: '<i class="fa-solid fa-store"></i> Ir al catálogo', fn: () => { switchSection('catalogo'); closeChat(); } },
+                            { label: '<i class="fa-brands fa-whatsapp"></i> WhatsApp', href: waLink('¡Hola NUTRIFRUTY! Quisiera información sobre envíos y pagos.'), wa: true }
+                        ]
+                    };
+                }
+                if (I.sugar) {
+                    return { html: 'Nuestras frutas son <strong>100% naturales</strong>: <ul><li>Sin azúcar añadida (el dulzor es de la propia fruta)</li><li>Sin conservantes ni aditivos químicos</li><li>Sin aceites ni frituras</li></ul>Además son naturalmente veganas y sin gluten. 🌱' };
+                }
+                if (I.storage) {
+                    return { html: 'Para que se mantengan crujientes:<ul><li>Guárdalas en un lugar fresco, seco y lejos del sol.</li><li>Cierra bien la bolsa después de abrirla (o pásalas a un frasco hermético).</li><li>No necesitan refrigeración.</li></ul>La humedad es su enemiga: si se ablandan un poco, siguen siendo aptas mientras no cambien de olor o aspecto.' };
+                }
+                if (I.process) {
+                    return { html: 'Seleccionamos fruta fresca de agricultores de la región de Jaén, la cortamos y la <strong>deshidratamos a baja temperatura</strong> de forma artesanal. Así retiramos el agua y se concentran el sabor, la fibra y los minerales, sin añadir nada más. 🍃<span class="nf-note">Algunas vitaminas sensibles al calor (como la C) pueden reducirse en parte durante el secado, algo normal en toda fruta deshidratada.</span>' };
+                }
+                if (I.howEat) {
+                    return { html: 'Ideas para disfrutarlas:<ul><li>Directo de la bolsa como snack 🎒</li><li>Sobre yogurt, avena o granola</li><li>Naranja o manzana en infusiones y tés</li><li>En la lonchera de los niños</li></ul>Una porción recomendada es un puñado (unos 25–30 gr) al día.' };
+                }
+                if (I.about) {
+                    return {
+                        html: 'Somos <strong>NUTRIFRUTY</strong>, emprendimiento artesanal de <strong>Jaén, Cajamarca, Perú</strong>. 📍<br>Teléfono y WhatsApp: <strong>949 971 525</strong>.',
+                        actions: [{ label: '<i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp', href: waLink('¡Hola NUTRIFRUTY!'), wa: true }]
+                    };
+                }
+                if (I.catalog || (I.compare && !I.greet)) {
+                    return {
+                        html: `Tenemos estas frutas deshidratadas:<ul>${Object.keys(NF_PRODUCTS).map(k => `<li>${productLine(k)}</li>`).join('')}</ul>Pregúntame por cualquiera, o dime para qué la quieres (energía, digestión, defensas, niños…) y te recomiendo.`
+                    };
+                }
+                if (I.vitamins || I.props) {
+                    return { html: '¿De qué fruta quieres saber? También puedes preguntarme por una vitamina, por ejemplo: <em>“¿Cuál tiene más vitamina C?”</em>', chips: ['Vitaminas del mango', 'Beneficios del kiwi', '¿Cuál tiene más potasio?'] };
+                }
+                if (I.thanks) return { html: '¡Con gusto! 🧡 Si tienes otra duda, aquí estoy.' };
+                if (I.bye) return { html: '¡Hasta pronto! Que disfrutes tu snack saludable. 🍓' };
+                if (I.greet) return { html: '¡Hola! 👋 ¿Qué te gustaría saber de nuestras frutas?' };
+
+                return {
+                    html: 'Mmm, no estoy seguro de haber entendido. 🤔 Puedes preguntarme por las <strong>vitaminas, propiedades o precios</strong> de cualquier fruta, o escribirnos directamente por WhatsApp.',
+                    actions: [{ label: '<i class="fa-brands fa-whatsapp"></i> Preguntar por WhatsApp', href: waLink('¡Hola NUTRIFRUTY! Tengo una consulta: ' + raw), wa: true }]
+                };
+            }
+
+            // ---------- Interfaz ----------
+            function addMsg(who, content, actions) {
+                const div = document.createElement('div');
+                div.className = 'nf-msg ' + (who === 'user' ? 'nf-user' : 'nf-bot');
+                if (who === 'user') div.textContent = content; else div.innerHTML = content;
+                if (actions && actions.length) {
+                    const box = document.createElement('div');
+                    box.className = 'nf-msg-actions';
+                    actions.forEach(a => {
+                        const el = document.createElement(a.href ? 'a' : 'button');
+                        el.innerHTML = a.label;
+                        if (a.href) { el.href = a.href; el.target = '_blank'; el.rel = 'noopener'; if (a.wa) el.className = 'nf-wa'; }
+                        else { el.type = 'button'; el.addEventListener('click', a.fn); }
+                        box.appendChild(el);
+                    });
+                    div.appendChild(box);
+                }
+                msgs.appendChild(div);
+                msgs.scrollTop = msgs.scrollHeight;
+            }
+
+            function botSay(html, actions, chips) {
+                const typing = document.createElement('div');
+                typing.className = 'nf-msg nf-bot nf-typing';
+                typing.innerHTML = '<span></span><span></span><span></span>';
+                msgs.appendChild(typing);
+                msgs.scrollTop = msgs.scrollHeight;
+                setTimeout(() => {
+                    typing.remove();
+                    addMsg('bot', html, actions);
+                    if (chips) setChips(chips);
+                }, 450 + Math.min(html.length, 600) / 3);
+            }
+
+            const DEFAULT_CHIPS = ['¿Qué frutas tienen?', '¿Cuál tiene más vitamina C?', 'Algo para tener energía', 'Precios', '¿Tienen azúcar añadida?', '¿Cómo hago mi pedido?'];
+
+            function setChips(list) {
+                chipsBox.innerHTML = '';
+                list.forEach(txt => {
+                    const b = document.createElement('button');
+                    b.type = 'button'; b.className = 'nf-chip'; b.textContent = txt;
+                    b.addEventListener('click', () => send(txt));
+                    chipsBox.appendChild(b);
+                });
+            }
+
+            function send(text) {
+                if (!text.trim()) return;
+                addMsg('user', text);
+                const r = answer(text);
+                botSay(r.html, r.actions, r.chips || DEFAULT_CHIPS);
+            }
+
+            function openChat() {
+                win.classList.add('nf-open'); win.setAttribute('aria-hidden', 'false');
+                launcher.classList.add('nf-hidden');
+                if (!greeted) {
+                    greeted = true;
+                    botSay('¡Hola! Soy <strong>Fruty</strong> 🍊, el asistente de NUTRIFRUTY.<br>Pregúntame por las <strong>vitaminas, propiedades y precios</strong> de nuestras frutas deshidratadas, o dime qué buscas y te recomiendo la ideal.', null, DEFAULT_CHIPS);
+                }
+                setTimeout(() => input.focus(), 300);
+            }
+            function closeChat() {
+                win.classList.remove('nf-open'); win.setAttribute('aria-hidden', 'true');
+                launcher.classList.remove('nf-hidden');
+            }
+
+            launcher.addEventListener('click', openChat);
+            $('nfChatClose').addEventListener('click', closeChat);
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && win.classList.contains('nf-open')) closeChat(); });
+            form.addEventListener('submit', e => { e.preventDefault(); const v = input.value; input.value = ''; send(v); });
+        })();
     </script>
 </body>
 </html>
