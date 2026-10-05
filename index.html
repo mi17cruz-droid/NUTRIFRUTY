@@ -1400,6 +1400,852 @@
         @media (prefers-reduced-motion: reduce) {
             .nf-msg, .nf-typing span { animation: none; }
         }
+
+        /* =====================================================
+           NUEVAS SECCIONES: NUESTRO IMPACTO + EXPLORA
+           ===================================================== */
+        :root {
+            --leaf: #4E8B34;
+            --cream: #FFF8EC;
+            --line: rgba(45, 27, 13, 0.1);
+            --ok: #2E7D32;
+            --ok-bg: #EDF7EE;
+            --bad: #B3261E;
+            --bad-bg: #FCEDEC;
+        }
+
+        .nav-links { gap: 26px; }
+        .nav-links a { white-space: nowrap; }
+
+        @media (max-width: 1240px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 380px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                gap: 28px;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+                transition: var(--transition);
+                z-index: 1000;
+            }
+            .nav-links.active { right: 0; }
+            .hamburger { display: block; }
+        }
+
+        .nx-panel button:focus-visible,
+        .nx-tabs button:focus-visible,
+        .nx-impact button:focus-visible,
+        .nx-panel a:focus-visible {
+            outline: 3px solid var(--bright-yellow);
+            outline-offset: 2px;
+        }
+
+        .nx-link-btn {
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark-mustard);
+            cursor: pointer;
+            padding: 6px 2px;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .nx-link-btn:hover { color: var(--primary-orange); }
+        .nx-link-btn[hidden] { display: none; }
+
+        .nx-btn {
+            padding: 14px 26px;
+            font-family: inherit;
+            font-size: 15px;
+        }
+        .nx-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .nx-btn-outline {
+            background: var(--white);
+            color: var(--dark-brown);
+            border: 1.5px solid rgba(45, 27, 13, 0.18);
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .nx-btn-outline:hover:not(:disabled) { border-color: var(--primary-orange); background: var(--light-yellow); }
+        .nx-btn-outline:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* ---------- NUESTRO IMPACTO ---------- */
+        .nx-impact {
+            background: var(--dark-brown);
+            border-radius: 32px;
+            padding: 28px;
+        }
+
+        .nx-impact-tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .nx-impact-tab {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-align: left;
+            padding: 16px 18px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: transparent;
+            color: var(--white);
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.25s, border-color 0.25s, color 0.25s;
+        }
+        .nx-impact-tab:hover { border-color: rgba(255, 199, 0, 0.6); }
+        .nx-impact-tab i {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            border-radius: 13px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--bright-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            transition: background 0.25s, color 0.25s;
+        }
+        .nx-impact-tab strong {
+            display: block;
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .nx-impact-tab small { font-size: 12.5px; opacity: 0.75; }
+        .nx-impact-tab[aria-selected="true"] {
+            background: var(--light-yellow);
+            border-color: var(--light-yellow);
+            color: var(--dark-brown);
+        }
+        .nx-impact-tab[aria-selected="true"] i { background: var(--white); color: var(--primary-orange); }
+
+        .nx-impact-panel {
+            background: #FFFDF9;
+            border-radius: 24px;
+            padding: 48px;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 48px;
+            animation: nx-fade 0.45s ease;
+        }
+        .nx-impact-panel h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(28px, 3vw, 38px);
+            font-weight: 800;
+            color: var(--dark-brown);
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+        .nx-impact-lead {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-mustard);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .nx-impact-text {
+            font-size: 15.5px;
+            line-height: 1.75;
+            color: var(--text-light);
+            max-width: 60ch;
+        }
+        .nx-impact-cta { margin-top: 24px; }
+        .nx-impact-side {
+            border-left: 1px solid var(--line);
+            padding-left: 40px;
+        }
+        .nx-impact-side h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+        .nx-impact-list { list-style: none; }
+        .nx-impact-list li {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark-brown);
+            line-height: 1.45;
+        }
+        .nx-impact-list li:last-child { border-bottom: none; }
+        .nx-impact-list li i {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--light-yellow);
+            color: var(--primary-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        /* ---------- EXPLORA: PESTAÑAS ---------- */
+        .nx-tabs {
+            display: flex;
+            gap: 6px;
+            margin: 0 auto 32px auto;
+            padding: 6px;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            width: fit-content;
+            max-width: 100%;
+        }
+        .nx-tab {
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 14.5px;
+            color: var(--text-light);
+            padding: 12px 20px;
+            border-radius: 999px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            white-space: nowrap;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nx-tab:hover:not([aria-selected="true"]) { background: var(--light-yellow); color: var(--dark-brown); }
+        .nx-tab[aria-selected="true"] { background: var(--dark-brown); color: var(--white); }
+        .nx-tab[aria-selected="true"] i { color: var(--bright-yellow); }
+
+        .nx-panel {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            padding: 44px;
+        }
+        .nx-panel[hidden] { display: none; }
+        .nx-panel-head { max-width: 660px; margin-bottom: 32px; }
+        .nx-panel-head h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 8px;
+        }
+        .nx-panel-head p { font-size: 15.5px; line-height: 1.6; color: var(--text-light); }
+
+        /* ---------- ARMA TU BOLSITA ---------- */
+        .nx-bag-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 48px;
+            align-items: start;
+        }
+        .nx-step { margin-bottom: 30px; }
+        .nx-step[hidden] { display: none; }
+        .nx-step h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .nx-step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--dark-brown);
+            color: var(--white);
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nx-fruit-picker {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+            gap: 10px;
+        }
+        .nx-fruit-btn {
+            position: relative;
+            border: 1.5px solid var(--line);
+            background: #FFFDF9;
+            border-radius: 16px;
+            padding: 14px 8px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            transition: border-color 0.2s, background 0.2s, opacity 0.2s;
+        }
+        .nx-fruit-btn svg { width: 46px; height: 46px; }
+        .nx-fruit-btn:hover { border-color: rgba(255, 107, 0, 0.45); }
+        .nx-fruit-btn[aria-pressed="true"] { border-color: var(--primary-orange); background: #FFF3E6; }
+        .nx-fruit-check {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-orange);
+            color: var(--white);
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .nx-fruit-btn[aria-pressed="true"] .nx-fruit-check { opacity: 1; transform: scale(1); }
+        .nx-locked .nx-fruit-btn { cursor: default; }
+        .nx-locked .nx-fruit-btn[aria-pressed="false"] { opacity: 0.4; }
+        .nx-locked .nx-fruit-btn:hover { border-color: var(--line); }
+        .nx-locked .nx-fruit-btn[aria-pressed="true"]:hover { border-color: var(--primary-orange); }
+
+        .nx-bag-actions { display: flex; align-items: center; gap: 18px; margin-top: 20px; flex-wrap: wrap; }
+
+        .nx-occasions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .nx-occasion {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border: 1.5px solid var(--line);
+            border-radius: 16px;
+            background: #FFFDF9;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            cursor: pointer;
+            text-align: left;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .nx-occasion i {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--light-yellow);
+            color: var(--primary-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+        .nx-occasion:hover { border-color: rgba(255, 107, 0, 0.45); }
+        .nx-occasion[aria-pressed="true"] { border-color: var(--primary-orange); background: #FFF3E6; }
+
+        .nx-bag-result {
+            background: #FFFBF3;
+            border: 1px solid rgba(255, 107, 0, 0.22);
+            border-radius: 20px;
+            padding: 26px;
+            animation: nx-fade 0.45s ease;
+        }
+        .nx-bag-result[hidden] { display: none; }
+        .nx-result-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+        .nx-result-head > i { color: var(--ok); font-size: 26px; margin-top: 2px; }
+        .nx-result-head strong {
+            display: block;
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            color: var(--dark-brown);
+        }
+        .nx-result-head span { font-size: 14px; color: var(--text-light); }
+        .nx-bag-result > p { font-size: 15px; line-height: 1.65; color: var(--text-dark); margin-bottom: 16px; }
+        .nx-practical {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 18px;
+            padding: 16px 0;
+            border-top: 1px dashed rgba(217, 130, 43, 0.35);
+            border-bottom: 1px dashed rgba(217, 130, 43, 0.35);
+            margin-bottom: 18px;
+        }
+        .nx-practical li { display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: var(--text-dark); }
+        .nx-practical li i { color: var(--dark-mustard); width: 16px; margin-top: 2px; text-align: center; }
+        .nx-practical strong { color: var(--dark-brown); }
+        .nx-result-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+        .nx-result-actions .nx-wa { border-color: rgba(37, 211, 102, 0.6); }
+        .nx-result-actions .nx-wa i { color: #1EA952; }
+
+        .nx-bag-stage {
+            position: sticky;
+            top: 120px;
+            background: radial-gradient(circle at 50% 45%, #FFF1D6 0%, rgba(255, 241, 214, 0) 70%);
+            padding: 10px 0;
+        }
+        .nx-bag {
+            position: relative;
+            width: 100%;
+            max-width: 290px;
+            aspect-ratio: 280 / 340;
+            margin: 0 auto;
+            filter: drop-shadow(0 18px 24px rgba(45, 27, 13, 0.16));
+        }
+        .nx-bag > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .nx-bag { transform: scale(var(--bag-scale, 0.86)); transform-origin: 50% 100%; transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1); }
+        .nx-bag-size {
+            position: absolute;
+            top: 14%;
+            left: -6%;
+            background: var(--dark-brown);
+            color: var(--bright-yellow);
+            border-radius: 999px;
+            padding: 7px 13px;
+            font-size: 13px;
+            font-weight: 800;
+            transform: rotate(-6deg);
+            box-shadow: 0 6px 14px rgba(45, 27, 13, 0.18);
+            white-space: nowrap;
+        }
+        .nx-bag-pricing { margin: 20px 0 0 0; max-width: 420px; }
+        .nx-bag-pricing .pricing-option-label { font-size: 14px; padding: 6px 8px; }
+        .nx-locked .nx-bag-pricing .pricing-option-label { cursor: default; }
+        .nx-locked .nx-bag-pricing .pricing-option-label:hover { background: none; }
+        .nx-result-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            background: var(--white);
+            border: 1px dashed rgba(255, 107, 0, 0.3);
+            border-radius: 14px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--dark-brown);
+        }
+        .nx-result-price strong { color: var(--primary-orange); font-size: 17px; white-space: nowrap; }
+        .nx-result-actions .btn-primary { padding: 12px 22px; font-family: inherit; font-size: 14px; }
+        .nx-bag-window, .nx-bag-glare {
+            position: absolute;
+            left: 20%;
+            top: 32.94%;
+            width: 60%;
+            height: 44.12%;
+            border-radius: 16.7% / 18.7%;
+        }
+        .nx-bag-window {
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap-reverse;
+            align-content: flex-start;
+            justify-content: center;
+            padding: 3% 4%;
+        }
+        .nx-bag-glare {
+            pointer-events: none;
+            background: linear-gradient(115deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 28%, rgba(255,255,255,0) 72%, rgba(255,255,255,0.25) 100%);
+        }
+        .nx-piece {
+            width: 25%;
+            aspect-ratio: 1;
+            margin: -3% -1.5%;
+            transform: rotate(var(--r, 0deg));
+            animation: nx-drop 0.55s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+        }
+        .nx-piece svg { width: 100%; height: 100%; display: block; }
+        .nx-seal-line { transition: stroke 0.3s; }
+        .nx-bag.is-sealed .nx-seal-band { fill: #9C6E3C; }
+        .nx-bag.is-sealed .nx-seal-line { stroke: var(--dark-brown); stroke-dasharray: none; }
+        .nx-bag-tag {
+            position: absolute;
+            top: 14%;
+            right: -6%;
+            background: var(--white);
+            border: 1.5px solid var(--primary-orange);
+            color: var(--dark-brown);
+            border-radius: 999px;
+            padding: 7px 13px;
+            font-size: 13px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transform: rotate(6deg);
+            animation: nx-pop-tag 0.4s cubic-bezier(0.34, 1.5, 0.64, 1);
+            box-shadow: 0 6px 14px rgba(45, 27, 13, 0.12);
+        }
+        .nx-bag-tag i { color: var(--primary-orange); }
+        .nx-bag-tag[hidden] { display: none; }
+        .nx-bag-caption {
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-light);
+            margin-top: 18px;
+            min-height: 42px;
+        }
+        .nx-bag-caption strong { color: var(--dark-brown); }
+
+        /* ---------- TRANSFORMA LA FRUTA ---------- */
+        .nx-tl-wrap { position: relative; margin-bottom: 28px; }
+        .nx-timeline {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            position: relative;
+            z-index: 1;
+        }
+        .nx-tl-wrap::before, .nx-tl-fill {
+            content: '';
+            position: absolute;
+            top: 21px;
+            left: 10%;
+            height: 3px;
+            border-radius: 3px;
+        }
+        .nx-tl-wrap::before { right: 10%; background: rgba(45, 27, 13, 0.1); }
+        .nx-tl-fill { background: var(--primary-orange); width: 0; transition: width 0.6s ease; }
+        .nx-tl-btn {
+            position: relative;
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 0 4px;
+        }
+        .nx-tl-dot {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid rgba(45, 27, 13, 0.18);
+            color: var(--text-light);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
+        }
+        .nx-tl-label { font-size: 13.5px; font-weight: 700; color: var(--text-light); text-align: center; line-height: 1.3; }
+        .nx-tl-solar { font-size: 11.5px; font-weight: 700; color: var(--dark-mustard); display: inline-flex; gap: 4px; align-items: center; }
+        .nx-tl-btn.is-done .nx-tl-dot { background: var(--primary-orange); border-color: var(--primary-orange); color: var(--white); }
+        .nx-tl-btn[aria-current="step"] .nx-tl-dot { background: var(--dark-brown); border-color: var(--dark-brown); color: var(--white); transform: scale(1.1); }
+        .nx-tl-btn[aria-current="step"] .nx-tl-label { color: var(--dark-brown); }
+
+        .nx-proc-layout {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 36px;
+            align-items: stretch;
+        }
+        .nx-proc-scene {
+            background: linear-gradient(180deg, #FFF6E3 0%, #FFEFD0 100%);
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(217, 130, 43, 0.18);
+        }
+        .nx-proc-scene > svg { display: block; width: 100%; height: auto; }
+        .nx-proc-scene { align-self: start; }
+        .nx-scene { opacity: 0; transition: opacity 0.6s ease; }
+        .nx-scene.is-active { opacity: 1; }
+        .nx-scene-text { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; fill: #5A3E22; }
+        .nx-scene-strong { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; fill: #2D1B0D; }
+
+        .nx-scene.is-active .nx-rays { animation: nx-spin 16s linear infinite; }
+        .nx-rays, .nx-spark { transform-box: fill-box; transform-origin: center; }
+        .nx-scene.is-active .nx-beam { animation: nx-dash 1.4s linear infinite; }
+        .nx-scene.is-active .nx-flow { animation: nx-dash 1.1s linear infinite; }
+        .nx-scene.is-active .nx-vapor { animation: nx-rise 2.6s ease-in infinite; }
+        .nx-scene.is-active .nx-knife { animation: nx-chop 1.3s ease-in-out infinite; }
+        .nx-scene.is-active .nx-spark { animation: nx-twinkle 2.2s ease-in-out infinite; }
+
+        .nx-proc-info {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .nx-proc-step { font-size: 13px; font-weight: 700; color: var(--text-light); }
+        .nx-proc-info h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--dark-brown);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+        .nx-solar-badge {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            background: var(--bright-yellow);
+            color: var(--dark-brown);
+            padding: 5px 11px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nx-proc-text { font-size: 15px; line-height: 1.7; color: var(--text-dark); }
+        .nx-proc-extra {
+            background: var(--light-yellow);
+            border-radius: 16px;
+            padding: 18px 20px;
+        }
+        .nx-proc-extra strong { display: block; font-size: 14.5px; color: var(--dark-brown); margin-bottom: 8px; }
+        .nx-proc-extra ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .nx-proc-extra li { font-size: 14px; line-height: 1.55; color: var(--text-dark); padding-left: 18px; position: relative; }
+        .nx-proc-extra li::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 8px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--primary-orange);
+        }
+        .nx-proc-text-wrap { animation: nx-fade 0.4s ease; display: flex; flex-direction: column; gap: 16px; }
+
+        .nx-water { margin-top: auto; padding-top: 6px; }
+        .nx-water-row { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: var(--text-light); margin-bottom: 8px; }
+        .nx-water-row strong { color: #2B78A8; font-size: 15px; }
+        .nx-water-track { height: 12px; border-radius: 12px; background: rgba(43, 120, 168, 0.12); overflow: hidden; }
+        .nx-water-fill { height: 100%; width: 80%; border-radius: 12px; background: linear-gradient(90deg, #7CC3EA, #2B78A8); transition: width 0.9s ease; }
+
+        .nx-proc-controls { display: flex; justify-content: center; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+
+        /* ---------- JUEGOS ---------- */
+        .nx-game {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .nx-case {
+            background: var(--cream);
+            border: 1px solid rgba(217, 130, 43, 0.2);
+            border-radius: 22px;
+            padding: 22px;
+            text-align: center;
+            position: sticky;
+            top: 120px;
+        }
+        .nx-case-meta { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: var(--text-light); margin-bottom: 14px; }
+        .nx-case-meta span:last-child { color: var(--dark-mustard); }
+        .nx-case-fruit { width: 170px; height: 170px; margin: 6px auto 8px auto; }
+        .nx-case-fruit svg { width: 100%; height: 100%; }
+        .nx-case-fruit.is-new { animation: nx-fade 0.45s ease; }
+        .nx-case-name { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800; color: var(--dark-brown); min-height: 32px; }
+
+        .nx-game-label { font-size: 14px; font-weight: 700; color: var(--text-light); margin-bottom: 12px; display: flex; gap: 8px; align-items: center; }
+        .nx-game-label i { color: var(--primary-orange); }
+        .nx-clues { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 6px; }
+        .nx-clues li {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+            background: #FFFDF9;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 12px 16px;
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--text-dark);
+            animation: nx-fade 0.35s ease;
+        }
+        .nx-clues li span { font-size: 12px; font-weight: 800; color: var(--dark-mustard); white-space: nowrap; }
+        .nx-question {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            line-height: 1.35;
+            margin: 22px 0 14px 0;
+        }
+        .nx-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .nx-option {
+            border: 1.5px solid var(--line);
+            background: var(--white);
+            border-radius: 14px;
+            padding: 14px 16px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .nx-option:hover:not(:disabled) { border-color: var(--primary-orange); background: #FFF8EF; }
+        .nx-option:disabled { cursor: default; }
+        .nx-option svg { width: 30px; height: 30px; flex-shrink: 0; }
+        .nx-option.is-right { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); }
+        .nx-option.is-wrong { border-color: var(--bad); background: var(--bad-bg); color: var(--bad); animation: nx-shake 0.35s; }
+        .nx-option.is-faded { opacity: 0.45; }
+        .nx-status { font-size: 14px; font-weight: 600; color: var(--bad); min-height: 22px; margin-top: 10px; }
+
+        .nx-feedback {
+            margin-top: 20px;
+            border-radius: 18px;
+            padding: 22px;
+            background: var(--ok-bg);
+            border: 1px solid rgba(46, 125, 50, 0.25);
+            animation: nx-fade 0.4s ease;
+        }
+        .nx-feedback[hidden] { display: none; }
+        .nx-feedback.is-bad { background: #FFF7F0; border-color: rgba(217, 130, 43, 0.35); }
+        .nx-feedback-title { display: flex; gap: 10px; align-items: center; font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 800; color: var(--ok); margin-bottom: 8px; }
+        .nx-feedback.is-bad .nx-feedback-title { color: var(--dark-mustard); }
+        .nx-feedback p { font-size: 15px; line-height: 1.65; color: var(--text-dark); margin-bottom: 16px; }
+        .nx-feedback .btn-primary { padding: 12px 24px; font-family: inherit; font-size: 14.5px; }
+
+        .nx-mystery {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 6px auto 12px auto;
+            border-radius: 22px;
+            background: var(--white);
+            overflow: hidden;
+            border: 1px solid rgba(217, 130, 43, 0.2);
+        }
+        .nx-mystery-fruit { position: absolute; inset: 12%; }
+        .nx-mystery-fruit svg { width: 100%; height: 100%; }
+        .nx-tiles {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+        }
+        .nx-tile {
+            background: #3A2414;
+            border: 1px solid #2D1B0D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 199, 0, 0.35);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+        .nx-tile.is-open { opacity: 0; transform: scale(0.6); }
+        .nx-mystery.is-solved { animation: nx-bump 0.5s ease; }
+
+        /* ---------- ANIMACIONES ---------- */
+        @keyframes nx-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+        @keyframes nx-drop {
+            from { opacity: 0; transform: translateY(-240%) rotate(var(--r, 0deg)); }
+            to { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)); }
+        }
+        @keyframes nx-pop-tag { from { opacity: 0; transform: rotate(6deg) scale(0.6); } to { opacity: 1; transform: rotate(6deg) scale(1); } }
+        @keyframes nx-spin { to { transform: rotate(360deg); } }
+        @keyframes nx-dash { to { stroke-dashoffset: -36; } }
+        @keyframes nx-rise {
+            0% { transform: translateY(0); opacity: 0; }
+            25% { opacity: 0.9; }
+            100% { transform: translateY(-46px); opacity: 0; }
+        }
+        @keyframes nx-chop { 0%, 100% { transform: translateY(-10px); } 50% { transform: translateY(6px); } }
+        @keyframes nx-twinkle { 0%, 100% { transform: scale(0.6); opacity: 0.3; } 50% { transform: scale(1); opacity: 1; } }
+        @keyframes nx-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        @keyframes nx-bump { 0% { transform: scale(1); } 40% { transform: scale(1.06); } 100% { transform: scale(1); } }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1080px) {
+            .nx-impact-tabs { grid-template-columns: repeat(2, 1fr); }
+            .nx-impact-panel { grid-template-columns: 1fr; gap: 28px; padding: 36px; }
+            .nx-impact-side { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
+            .nx-bag-layout { grid-template-columns: 1fr; gap: 28px; }
+            .nx-bag-stage { position: static; order: -1; }
+            .nx-proc-layout { grid-template-columns: 1fr; gap: 24px; }
+            .nx-game { grid-template-columns: 1fr; gap: 24px; }
+            .nx-case { position: static; }
+        }
+        @media (max-width: 700px) {
+            .page-section { padding-left: 18px; padding-right: 18px; }
+            .nx-panel { padding: 24px 18px; border-radius: 22px; }
+            .nx-panel-head h3 { font-size: 24px; }
+            .nx-tabs { width: 100%; overflow-x: auto; border-radius: 18px; scrollbar-width: none; }
+            .nx-tabs::-webkit-scrollbar { display: none; }
+            .nx-tab { padding: 11px 15px; font-size: 13.5px; }
+            .nx-impact { padding: 14px; border-radius: 24px; }
+            .nx-impact-tabs { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .nx-impact-tab { padding: 12px; gap: 10px; }
+            .nx-impact-tab i { width: 38px; height: 38px; font-size: 16px; }
+            .nx-impact-tab small { display: none; }
+            .nx-impact-tab strong { font-size: 15.5px; }
+            .nx-impact-panel { padding: 24px 20px; }
+            .nx-occasions, .nx-practical, .nx-options { grid-template-columns: 1fr; }
+            .nx-bag { max-width: 230px; }
+            .nx-fruit-picker { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+            .nx-fruit-btn { padding: 10px 2px 8px; font-size: 11.5px; border-radius: 12px; }
+            .nx-fruit-btn svg { width: 34px; height: 34px; }
+            .nx-fruit-check { top: 4px; right: 4px; width: 16px; height: 16px; font-size: 8px; }
+            .nx-bag-tag { right: -14%; }
+            .nx-tl-label { font-size: 11.5px; }
+            .nx-tl-solar { display: none; }
+            .nx-tl-dot { width: 36px; height: 36px; font-size: 14px; }
+            .nx-tl-wrap::before, .nx-tl-fill { top: 17px; }
+            .nx-proc-info h4 { font-size: 22px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .nx-scene *, .nx-piece, .nx-bag-tag, .nx-impact-panel, .nx-clues li,
+            .nx-feedback, .nx-bag-result, .nx-proc-text-wrap, .nx-case-fruit, .nx-mystery, .nx-option {
+                animation: none !important;
+            }
+            .nx-scene, .nx-tile, .nx-water-fill, .nx-tl-fill { transition: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -1414,6 +2260,8 @@
                 <li><a onclick="switchSection('inicio')" id="link-inicio" class="active-link">Inicio</a></li>
                 <li><a onclick="switchSection('beneficios')" id="link-beneficios">Por qué te hace bien</a></li>
                 <li><a onclick="switchSection('catalogo')" id="link-catalogo">Catálogo Real</a></li>
+                <li><a onclick="switchSection('impacto')" id="link-impacto">Nuestro impacto</a></li>
+                <li><a onclick="switchSection('explora')" id="link-explora">Explora</a></li>
                 <li><a onclick="switchSection('nosotros')" id="link-nosotros">Nosotros</a></li>
                 <li><a onclick="switchSection('pide-ahora')" id="link-pide-ahora" class="nav-cta"><i class="fa-solid fa-cart-shopping"></i> ¡Pide Ahora! <span class="cart-badge-count" id="cartBadgeCount">0</span></a></li>
             </ul>
@@ -1882,6 +2730,191 @@
             </div>
         </section>
 
+        <!-- SECCIÓN: NUESTRO IMPACTO -->
+        <section id="sec-impacto" class="page-section">
+            <div class="section-header">
+                <span>Lo que nos mueve</span>
+                <h2>Nuestro impacto</h2>
+                <p>Cada bolsita de NUTRIFRUTY parte de cuatro compromisos. Selecciona uno para conocer qué hacemos y por qué importa.</p>
+            </div>
+
+            <div class="nx-impact">
+                <div class="nx-impact-tabs" role="tablist" aria-label="Aspectos de nuestro impacto">
+                    <button type="button" role="tab" class="nx-impact-tab" id="nxImpTab-salud" data-impact="salud" aria-controls="nxImpactPanel" aria-selected="true">
+                        <i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>
+                        <span><strong>Salud</strong><small>Más fruta en tu día</small></span>
+                    </button>
+                    <button type="button" role="tab" class="nx-impact-tab" id="nxImpTab-innovacion" data-impact="innovacion" aria-controls="nxImpactPanel" aria-selected="false" tabindex="-1">
+                        <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                        <span><strong>Innovación</strong><small>Secado con energía solar</small></span>
+                    </button>
+                    <button type="button" role="tab" class="nx-impact-tab" id="nxImpTab-sostenibilidad" data-impact="sostenibilidad" aria-controls="nxImpactPanel" aria-selected="false" tabindex="-1">
+                        <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                        <span><strong>Sostenibilidad</strong><small>Uso responsable de recursos</small></span>
+                    </button>
+                    <button type="button" role="tab" class="nx-impact-tab" id="nxImpTab-revalorizacion" data-impact="revalorizacion" aria-controls="nxImpactPanel" aria-selected="false" tabindex="-1">
+                        <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+                        <span><strong>Revalorización</strong><small>Nuevo valor para la fruta</small></span>
+                    </button>
+                </div>
+                <div class="nx-impact-panel" id="nxImpactPanel" role="tabpanel" aria-labelledby="nxImpTab-salud"></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: EXPLORA (Bolsita, Proceso, Detectives, Adivinanzas) -->
+        <section id="sec-explora" class="page-section">
+            <div class="section-header">
+                <span>Aprende jugando</span>
+                <h2>Explora la fruta con NUTRIFRUTY</h2>
+                <p>Arma tu propia bolsita, mira cómo el sol transforma la fruta y pon a prueba lo que sabes sobre sus nutrientes.</p>
+            </div>
+
+            <div class="nx-tabs" role="tablist" aria-label="Actividades">
+                <button type="button" role="tab" class="nx-tab" id="nxTab-bolsita" aria-controls="nxPanel-bolsita" aria-selected="true"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i> Arma tu bolsita</button>
+                <button type="button" role="tab" class="nx-tab" id="nxTab-transforma" aria-controls="nxPanel-transforma" aria-selected="false" tabindex="-1"><i class="fa-solid fa-sun" aria-hidden="true"></i> Transforma la fruta</button>
+                <button type="button" role="tab" class="nx-tab" id="nxTab-detectives" aria-controls="nxPanel-detectives" aria-selected="false" tabindex="-1"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Detectives de nutrientes</button>
+                <button type="button" role="tab" class="nx-tab" id="nxTab-adivina" aria-controls="nxPanel-adivina" aria-selected="false" tabindex="-1"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Adivina la fruta</button>
+            </div>
+
+            <!-- 1. ARMA TU BOLSITA -->
+            <div class="nx-panel" id="nxPanel-bolsita" role="tabpanel" aria-labelledby="nxTab-bolsita">
+                <div class="nx-panel-head">
+                    <h3>Arma tu bolsita NUTRIFRUTY</h3>
+                    <p>Elige las frutas que quieres llevar contigo y mira cómo llenan tu bolsita. Luego cuéntanos a dónde la llevarías.</p>
+                </div>
+                <div class="nx-bag-layout">
+                    <div class="nx-bag-controls">
+                        <div class="nx-step" id="bagStep1">
+                            <h4><span class="nx-step-num">1</span> Elige tus frutas</h4>
+                            <div class="nx-fruit-picker" id="bagPicker"></div>
+                            <div class="product-pricing nx-bag-pricing">
+                                <span class="pricing-title">Presentaciones y Precios</span>
+                                <div class="pricing-list" id="bagSizes">
+                                    <label class="pricing-option-label">
+                                        <span><input type="radio" name="opt-bolsita" value="50 gr" data-price="4" checked> Bolsa 50 gr</span>
+                                        <span class="pricing-item-price">4 soles</span>
+                                    </label>
+                                    <label class="pricing-option-label">
+                                        <span><input type="radio" name="opt-bolsita" value="100 gr" data-price="8"> Bolsa 100 gr</span>
+                                        <span class="pricing-item-price">8 soles</span>
+                                    </label>
+                                    <label class="pricing-option-label">
+                                        <span><input type="radio" name="opt-bolsita" value="200 gr" data-price="16"> Bolsa 200 gr</span>
+                                        <span class="pricing-item-price">16 soles</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="nx-bag-actions">
+                                <button type="button" class="btn-primary nx-btn" id="bagDone" disabled><i class="fa-solid fa-lock" aria-hidden="true"></i> <span>Cerrar mi bolsita</span></button>
+                                <button type="button" class="nx-link-btn" id="bagClear" hidden>Vaciar bolsita</button>
+                            </div>
+                        </div>
+                        <div class="nx-step" id="bagStep2" hidden>
+                            <h4><span class="nx-step-num">2</span> ¿Para qué ocasión la llevarías?</h4>
+                            <div class="nx-occasions" id="bagOccasions"></div>
+                        </div>
+                        <div class="nx-bag-result" id="bagResult" hidden aria-live="polite"></div>
+                    </div>
+
+                    <div class="nx-bag-stage">
+                        <div class="nx-bag" id="bagVisual">
+                            <svg viewBox="0 0 280 340" aria-hidden="true">
+                                <path d="M34 22 H246 Q256 22 256 32 V292 Q256 318 230 320 H50 Q24 318 24 292 V32 Q24 22 34 22Z" fill="#C99C66"/>
+                                <path class="nx-seal-band" d="M24 32 Q24 22 34 22 H246 Q256 22 256 32 V44 H24Z" fill="#B4844E"/>
+                                <path d="M24 44 L30 40 L24 36Z M256 44 L250 40 L256 36Z" fill="#FFFDF9"/>
+                                <line class="nx-seal-line" x1="34" y1="54" x2="246" y2="54" stroke="#A97A45" stroke-width="2.5" stroke-dasharray="7 6"/>
+                                <path d="M40 66 Q34 180 42 296" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="9" fill="none" stroke-linecap="round"/>
+                                <text x="140" y="85" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="24" fill="#2D1B0D" letter-spacing="1">NUTRIFRUTY</text>
+                                <text x="140" y="102" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="11" fill="#5A3E22">Fruta deshidratada al sol</text>
+                                <rect x="56" y="112" width="168" height="150" rx="28" fill="#FFF8EC" stroke="#A97A45" stroke-width="2"/>
+                                <text x="140" y="284" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="11" fill="#5A3E22">100 % natural, sin azúcar añadida</text>
+                                <path d="M30 302 Q140 290 250 302" stroke="#B4844E" stroke-width="2" fill="none"/>
+                            </svg>
+                            <div class="nx-bag-window" id="bagWindow"></div>
+                            <div class="nx-bag-glare"></div>
+                            <div class="nx-bag-tag" id="bagTag" hidden></div>
+                            <div class="nx-bag-size" id="bagSizeTag">50 gr</div>
+                        </div>
+                        <p class="nx-bag-caption" id="bagCaption" aria-live="polite"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. TRANSFORMA LA FRUTA -->
+            <div class="nx-panel" id="nxPanel-transforma" role="tabpanel" aria-labelledby="nxTab-transforma" hidden>
+                <div class="nx-panel-head">
+                    <h3>Transforma la fruta</h3>
+                    <p>Así pasa la fruta fresca de la chacra a tu bolsita, usando la energía del sol. Avanza etapa por etapa o reproduce el proceso completo.</p>
+                </div>
+                <div class="nx-tl-wrap"><span class="nx-tl-fill" id="procFill" aria-hidden="true"></span><ol class="nx-timeline" id="procTimeline"></ol></div>
+                <div class="nx-proc-layout">
+                    <div class="nx-proc-scene" id="procScene"></div>
+                    <div class="nx-proc-info">
+                        <div id="procText" aria-live="polite"></div>
+                        <div class="nx-water">
+                            <div class="nx-water-row"><span><i class="fa-solid fa-droplet" aria-hidden="true"></i> Agua en la fruta (aprox.)</span><strong id="procWaterVal">80 %</strong></div>
+                            <div class="nx-water-track"><div class="nx-water-fill" id="procWaterFill"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nx-proc-controls">
+                    <button type="button" class="nx-btn-outline" id="procPrev"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i> Etapa anterior</button>
+                    <button type="button" class="btn-primary nx-btn" id="procPlay"><i class="fa-solid fa-play" aria-hidden="true"></i> <span>Reproducir proceso</span></button>
+                    <button type="button" class="nx-btn-outline" id="procNext">Etapa siguiente <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+            <!-- 3. DETECTIVES DE NUTRIENTES -->
+            <div class="nx-panel" id="nxPanel-detectives" role="tabpanel" aria-labelledby="nxTab-detectives" hidden>
+                <div class="nx-panel-head">
+                    <h3>Detectives de nutrientes</h3>
+                    <p>Lee las pistas sobre cada fruta y descubre qué vitamina o nutriente la caracteriza. Si necesitas ayuda, pide otra pista.</p>
+                </div>
+                <div class="nx-game">
+                    <div class="nx-case">
+                        <div class="nx-case-meta"><span id="detCount"></span><span id="detScore"></span></div>
+                        <div class="nx-case-fruit" id="detFruit"></div>
+                        <p class="nx-case-name" id="detName"></p>
+                    </div>
+                    <div>
+                        <h4 class="nx-game-label"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Pistas del caso</h4>
+                        <ol class="nx-clues" id="detClues"></ol>
+                        <button type="button" class="nx-link-btn" id="detMore"></button>
+                        <p class="nx-question" id="detQuestion"></p>
+                        <div class="nx-options" id="detOptions"></div>
+                        <div class="nx-feedback" id="detFeedback" hidden aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. ADIVINA LA FRUTA -->
+            <div class="nx-panel" id="nxPanel-adivina" role="tabpanel" aria-labelledby="nxTab-adivina" hidden>
+                <div class="nx-panel-head">
+                    <h3>Adivina la fruta</h3>
+                    <p>Hay una fruta escondida detrás de los cuadros. Lee la primera pista y, si necesitas ayuda, pide otra: cada pista nueva descubre una pequeña parte de la fruta.</p>
+                </div>
+                <div class="nx-game">
+                    <div class="nx-case">
+                        <div class="nx-case-meta"><span id="advCount"></span><span id="advScore"></span></div>
+                        <div class="nx-mystery" id="advMystery">
+                            <div class="nx-mystery-fruit" id="advFruit"></div>
+                            <div class="nx-tiles" id="advTiles" aria-hidden="true"></div>
+                        </div>
+                        <p class="nx-case-name" id="advName">¿Qué fruta será?</p>
+                    </div>
+                    <div>
+                        <h4 class="nx-game-label"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Pistas</h4>
+                        <ol class="nx-clues" id="advClues"></ol>
+                        <button type="button" class="nx-link-btn" id="advMore"></button>
+                        <p class="nx-question">¿De qué fruta se trata?</p>
+                        <div class="nx-options" id="advOptions"></div>
+                        <p class="nx-status" id="advStatus" aria-live="polite"></p>
+                        <div class="nx-feedback" id="advFeedback" hidden aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECCIÓN: NOSOTROS -->
         <section id="sec-nosotros" class="page-section">
             <div class="story-container">
@@ -2004,6 +3037,8 @@
                     <li><a onclick="switchSection('inicio')"><i class="fa-solid fa-chevron-right"></i> Inicio</a></li>
                     <li><a onclick="switchSection('beneficios')"><i class="fa-solid fa-chevron-right"></i> Por qué te hace bien</a></li>
                     <li><a onclick="switchSection('catalogo')"><i class="fa-solid fa-chevron-right"></i> Catálogo Real</a></li>
+                    <li><a onclick="switchSection('impacto')"><i class="fa-solid fa-chevron-right"></i> Nuestro impacto</a></li>
+                    <li><a onclick="switchSection('explora')"><i class="fa-solid fa-chevron-right"></i> Explora y aprende</a></li>
                     <li><a onclick="switchSection('nosotros')"><i class="fa-solid fa-chevron-right"></i> Nosotros</a></li>
                 </ul>
             </div>
@@ -2061,7 +3096,7 @@
 
     <script>
         let cart = [];
-        const sections = ['inicio', 'beneficios', 'catalogo', 'nosotros', 'pide-ahora'];
+        const sections = ['inicio', 'beneficios', 'catalogo', 'impacto', 'explora', 'nosotros', 'pide-ahora'];
 
         function switchSection(targetId, updateHistory = true) {
             if(!sections.includes(targetId)) return;
@@ -2677,6 +3712,815 @@
             $('nfChatClose').addEventListener('click', closeChat);
             document.addEventListener('keydown', e => { if (e.key === 'Escape' && win.classList.contains('nf-open')) closeChat(); });
             form.addEventListener('submit', e => { e.preventDefault(); const v = input.value; input.value = ''; send(v); });
+        })();
+    </script>
+    <script>
+        /* ===================== EXPLORA + NUESTRO IMPACTO ===================== */
+        (function () {
+            const $ = (id) => document.getElementById(id);
+            const shuffle = (arr) => {
+                const a = arr.slice();
+                for (let i = a.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [a[i], a[j]] = [a[j], a[i]];
+                }
+                return a;
+            };
+            const listEs = (arr) => arr.length < 2 ? arr.join('') : arr.slice(0, -1).join(', ') + ' y ' + arr[arr.length - 1];
+            const WHATSAPP = '51949971525';
+
+            /* ---------- Ilustraciones de frutas (SVG 64x64) ---------- */
+            const LEAF = '#4E8B34';
+            const shine = (x, y, rx, ry, rot) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="#FFFFFF" opacity=".32" transform="rotate(${rot} ${x} ${y})"/>`;
+
+            function grapeSvg() {
+                const pos = [[22,18],[32,17],[42,18],[17,28],[27,28],[37,28],[47,28],[22,38],[32,38],[42,38],[27,47],[37,47],[32,56]];
+                let s = `<path d="M32 12 C31 8 33 5 36 3" stroke="#6B4A2B" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+                s += `<path d="M34 9 C40 3 50 4 53 10 C46 13 39 13 34 9Z" fill="${LEAF}"/>`;
+                pos.forEach(([x, y]) => {
+                    s += `<circle cx="${x}" cy="${y}" r="6.4" fill="#B5D86A" stroke="#86AE3E" stroke-width="1.2"/><circle cx="${x - 2}" cy="${y - 2}" r="1.6" fill="#FFFFFF" opacity=".6"/>`;
+                });
+                return s;
+            }
+            function pineappleSvg() {
+                let s = `<path d="M29 27 L15 12 L31 20Z" fill="#3F7A2A"/><path d="M35 27 L49 12 L33 20Z" fill="#3F7A2A"/>`;
+                s += `<path d="M32 26 L25 6 L31 15 L32 1 L34 15 L40 6 L35 26Z" fill="${LEAF}"/>`;
+                s += `<ellipse cx="32" cy="44" rx="16" ry="18" fill="#F2B632"/>`;
+                for (let y = 31; y <= 57; y += 6) {
+                    for (let x = 18; x <= 46; x += 6) {
+                        const ox = ((y - 31) / 6) % 2 ? 3 : 0;
+                        const px = x + ox;
+                        if (((px - 32) / 13.5) ** 2 + ((y - 44) / 15.5) ** 2 < 1) {
+                            s += `<path d="M${px - 2.5} ${y - 1.5} L${px} ${y + 1.5} L${px + 2.5} ${y - 1.5}" stroke="#C98A16" stroke-width="1.4" fill="none" stroke-linecap="round"/>`;
+                        }
+                    }
+                }
+                return s + shine(25, 38, 4, 7, 15);
+            }
+            function strawberrySvg() {
+                let s = `<path d="M32 59 C18 51 9 37 11 27 C13 18 24 16 32 19 C40 16 51 18 53 27 C55 37 46 51 32 59Z" fill="#E0323C"/>`;
+                [[22,28],[30,26],[38,26],[45,29],[18,36],[26,35],[34,34],[42,35],[48,37],[22,43],[30,43],[38,43],[44,44],[27,50],[35,50],[32,55]].forEach(([x, y]) => {
+                    s += `<ellipse cx="${x}" cy="${y}" rx="1.1" ry="1.7" fill="#FFD35A"/>`;
+                });
+                s += `<path d="M19 21 L25 14 L28 20 L32 10 L36 20 L39 14 L45 21 C38 25 26 25 19 21Z" fill="${LEAF}"/>`;
+                s += `<path d="M32 12 L32 5" stroke="#3F7A2A" stroke-width="3" stroke-linecap="round"/>`;
+                return s + shine(19, 32, 3, 6, 20);
+            }
+
+            const FRUITS = {
+                uva: { name: 'Uva verde', svg: grapeSvg() },
+                mandarina: {
+                    name: 'Mandarina',
+                    svg: `<ellipse cx="32" cy="37" rx="25" ry="21" fill="#F7931E"/>
+                          <circle cx="22" cy="44" r="1" fill="#E07F12"/><circle cx="40" cy="47" r="1" fill="#E07F12"/><circle cx="46" cy="33" r="1" fill="#E07F12"/><circle cx="30" cy="51" r="1" fill="#E07F12"/>
+                          <circle cx="32" cy="17" r="2.2" fill="#B9600C"/>
+                          <path d="M33 17 C36 8 46 6 51 10 C46 16 39 17 33 17Z" fill="${LEAF}"/>` + shine(22, 29, 7, 4, -25)
+                },
+                mango: {
+                    name: 'Mango',
+                    svg: `<path d="M13 40 C9 22 26 8 42 12 C57 16 59 34 51 46 C43 58 19 58 13 40Z" fill="#F9B233"/>
+                          <path d="M42 12 C57 16 59 34 51 46 C48 36 45 25 42 12Z" fill="#F26B3A" opacity=".5"/>
+                          <path d="M29 12 C34 10 38 10 42 12 C40 17 33 17 29 12Z" fill="#8DB33A" opacity=".75"/>
+                          <path d="M40 12 C41 8 43 6 45 5" stroke="#6B4A2B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                          <path d="M43 7 C50 1 60 3 61 8 C55 11 48 11 43 7Z" fill="${LEAF}"/>` + shine(22, 30, 4, 8, 25)
+                },
+                pina: { name: 'Piña', svg: pineappleSvg() },
+                fresa: { name: 'Fresa', svg: strawberrySvg() },
+                durazno: {
+                    name: 'Durazno',
+                    svg: `<circle cx="32" cy="37" r="22" fill="#F9A66C"/>
+                          <circle cx="24" cy="41" r="15" fill="#F0745C" opacity=".5"/>
+                          <path d="M32 16 C27 28 28 46 33 58" stroke="#D9684E" stroke-width="2" fill="none" opacity=".7"/>
+                          <path d="M32 16 C32 12 33 9 35 7" stroke="#6B4A2B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                          <path d="M34 11 C39 3 50 3 53 8 C47 13 40 13 34 11Z" fill="${LEAF}"/>` + shine(41, 30, 4, 6, -20)
+                },
+                mamey: {
+                    name: 'Mamey',
+                    svg: `<ellipse cx="32" cy="34" rx="26" ry="23" fill="#8A5A36"/>
+                          <circle cx="15" cy="27" r=".9" fill="#6E4527"/><circle cx="49" cy="44" r=".9" fill="#6E4527"/><circle cx="46" cy="20" r=".9" fill="#6E4527"/><circle cx="20" cy="49" r=".9" fill="#6E4527"/>
+                          <ellipse cx="32" cy="34" rx="21.5" ry="18.5" fill="#F2884B"/>
+                          <ellipse cx="32" cy="34" rx="17" ry="14.5" fill="#F59A5C"/>
+                          <ellipse cx="32" cy="34" rx="8" ry="11" fill="#4A2C17"/>
+                          <ellipse cx="29.5" cy="30" rx="2" ry="4" fill="#FFFFFF" opacity=".3"/>`
+                },
+                platano: {
+                    name: 'Plátano',
+                    svg: `<path d="M11 21 C14 46 36 57 57 44 C59 42 58 38 55 39 C38 46 22 39 17 21Z" fill="#F7D23E"/>
+                          <path d="M17 21 C22 39 38 46 55 39 C41 50 22 46 14 29Z" fill="#E4B21F" opacity=".7"/>
+                          <path d="M11 21 L9 14 L15 13 L17 21Z" fill="#6B4A2B"/>
+                          <circle cx="56.5" cy="41.5" r="2" fill="#5A3E22"/>` + shine(19, 33, 2.5, 7, -35)
+                }
+            };
+            const FRUIT_ORDER = ['uva', 'mandarina', 'mango', 'pina', 'fresa', 'durazno', 'mamey', 'platano'];
+            const fruitIcon = (k) => `<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">${FRUITS[k].svg}</svg>`;
+            const fruitAt = (k, x, y, size, rot) => {
+                const inner = `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="0 0 64 64">${FRUITS[k].svg}</svg>`;
+                return rot ? `<g transform="rotate(${rot} ${x + size / 2} ${y + size / 2})">${inner}</g>` : inner;
+            };
+
+            /* ================= NUESTRO IMPACTO ================= */
+            const IMPACT = {
+                salud: {
+                    title: 'Salud',
+                    lead: 'Más fruta en el día a día, de una forma práctica.',
+                    text: 'Muchas personas no llegan a comer la fruta que necesitan porque la fruta fresca no siempre es fácil de llevar. NUTRIFRUTY ofrece una forma natural de incluir fruta entre comidas, como parte de una alimentación variada y equilibrada. No reemplaza a la fruta fresca: la complementa en los momentos en que no la tienes a mano.',
+                    points: [
+                        ['fa-check', 'Sin azúcar añadida ni conservantes: solo fruta.'],
+                        ['fa-apple-whole', 'Una alternativa a los snacks ultraprocesados.'],
+                        ['fa-hand', 'Porciones moderadas: un puñado al día es suficiente.']
+                    ]
+                },
+                innovacion: {
+                    title: 'Innovación',
+                    lead: 'Usamos la energía del sol para deshidratar la fruta.',
+                    text: 'En lugar de depender solo de hornos eléctricos o a gas, aprovechamos un secador solar. La luz del sol calienta el aire dentro de una cámara cubierta, y ese aire tibio retira el agua de la fruta poco a poco. Es una tecnología sencilla que saca provecho del sol de nuestra región.',
+                    points: [
+                        ['fa-sun', 'Energía limpia y renovable en el paso principal del proceso.'],
+                        ['fa-shield-halved', 'Cámara cubierta que protege la fruta del polvo y los insectos.'],
+                        ['fa-magnifying-glass', 'Revisamos la fruta en cada etapa, de la cosecha a la bolsita.']
+                    ],
+                    cta: true
+                },
+                sostenibilidad: {
+                    title: 'Sostenibilidad',
+                    lead: 'Cuidamos los recursos que usamos.',
+                    text: 'El sol reemplaza buena parte de la energía que normalmente requiere deshidratar alimentos. Además, al retirar el agua, la fruta dura más tiempo sin refrigeración y pesa mucho menos, lo que reduce las pérdidas y facilita su almacenamiento y transporte.',
+                    points: [
+                        ['fa-bolt', 'Menor consumo de electricidad o gas.'],
+                        ['fa-recycle', 'Menos fruta desperdiciada por maduración rápida.'],
+                        ['fa-feather', 'Producto liviano que no necesita cadena de frío.']
+                    ]
+                },
+                revalorizacion: {
+                    title: 'Revalorización',
+                    lead: 'Damos un nuevo valor a la fruta de nuestra región.',
+                    text: 'La fruta fresca madura rápido y, en temporada de cosecha, una parte se pierde antes de llegar a la mesa. Al deshidratarla, la convertimos en un producto duradero y con identidad propia, que abre nuevas oportunidades para los productores de Jaén y acerca frutas menos conocidas a más personas.',
+                    points: [
+                        ['fa-handshake-angle', 'Trabajo de la mano con agricultores de la región.'],
+                        ['fa-star', 'Frutas poco conocidas, como el mamey, en un formato nuevo.'],
+                        ['fa-route', 'De la chacra a un snack listo para llevar.']
+                    ]
+                }
+            };
+            const IMPACT_KEYS = Object.keys(IMPACT);
+
+            function renderImpact(key) {
+                const d = IMPACT[key];
+                const panel = $('nxImpactPanel');
+                IMPACT_KEYS.forEach(k => {
+                    const t = $('nxImpTab-' + k);
+                    const on = k === key;
+                    t.setAttribute('aria-selected', on);
+                    t.tabIndex = on ? 0 : -1;
+                });
+                panel.setAttribute('aria-labelledby', 'nxImpTab-' + key);
+                panel.style.animation = 'none';
+                void panel.offsetWidth;
+                panel.style.animation = '';
+                panel.innerHTML = `
+                    <div>
+                        <h3>${d.title}</h3>
+                        <p class="nx-impact-lead">${d.lead}</p>
+                        <p class="nx-impact-text">${d.text}</p>
+                        ${d.cta ? `<div class="nx-impact-cta"><button type="button" class="nx-btn-outline" id="nxImpactCta"><i class="fa-solid fa-play" aria-hidden="true"></i> Ver el proceso paso a paso</button></div>` : ''}
+                    </div>
+                    <div class="nx-impact-side">
+                        <h4>Cómo lo hacemos</h4>
+                        <ul class="nx-impact-list">
+                            ${d.points.map(p => `<li><i class="fa-solid ${p[0]}" aria-hidden="true"></i><span>${p[1]}</span></li>`).join('')}
+                        </ul>
+                    </div>`;
+                const cta = $('nxImpactCta');
+                if (cta) cta.addEventListener('click', () => openExplore('transforma'));
+            }
+            IMPACT_KEYS.forEach((k, i) => {
+                const t = $('nxImpTab-' + k);
+                t.addEventListener('click', () => renderImpact(k));
+                t.addEventListener('keydown', (e) => {
+                    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                    e.preventDefault();
+                    const next = IMPACT_KEYS[(i + (e.key === 'ArrowRight' ? 1 : -1) + IMPACT_KEYS.length) % IMPACT_KEYS.length];
+                    renderImpact(next);
+                    $('nxImpTab-' + next).focus();
+                });
+            });
+            renderImpact('salud');
+
+            /* ================= PESTAÑAS DE EXPLORA ================= */
+            const TABS = ['bolsita', 'transforma', 'detectives', 'adivina'];
+            function selectTab(name) {
+                TABS.forEach(t => {
+                    const on = t === name;
+                    const tab = $('nxTab-' + t);
+                    tab.setAttribute('aria-selected', on);
+                    tab.tabIndex = on ? 0 : -1;
+                    $('nxPanel-' + t).hidden = !on;
+                });
+                if (name !== 'transforma') stopPlay();
+            }
+            TABS.forEach((t, i) => {
+                const tab = $('nxTab-' + t);
+                tab.addEventListener('click', () => selectTab(t));
+                tab.addEventListener('keydown', (e) => {
+                    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                    e.preventDefault();
+                    const next = TABS[(i + (e.key === 'ArrowRight' ? 1 : -1) + TABS.length) % TABS.length];
+                    selectTab(next);
+                    $('nxTab-' + next).focus();
+                });
+            });
+            window.openExplore = function (tab) {
+                switchSection('explora');
+                selectTab(TABS.includes(tab) ? tab : 'bolsita');
+            };
+
+            /* ================= 1. ARMA TU BOLSITA ================= */
+            const OCCASIONS = {
+                viaje: {
+                    label: 'Viaje', icon: 'fa-plane-departure', forText: 'tu viaje',
+                    text: 'Va en la mochila o en el equipaje de mano y aguanta horas de carretera o de vuelo: no necesita refrigeración, no se aplasta y no gotea como la fruta fresca.'
+                },
+                paseo: {
+                    label: 'Paseo', icon: 'fa-person-hiking', forText: 'tu paseo',
+                    text: 'Cabe en un bolsillo o en un canguro y pesa muy poco. La comes mientras caminas, sin cáscaras ni semillas que botar y sin manos pegajosas.'
+                },
+                colegio: {
+                    label: 'Colegio', icon: 'fa-school', forText: 'el colegio',
+                    text: 'Entra en la lonchera sin ocupar espacio y llega al recreo tal como salió de casa: sin fruta golpeada, sin jugo derramado y sin necesidad de pelarla.'
+                },
+                familia: {
+                    label: 'Salida familiar', icon: 'fa-people-group', forText: 'tu salida familiar',
+                    text: 'Una bolsita para compartir: se abre y se reparte en la mano, sin cuchillo ni tabla de picar. Todos eligen su fruta favorita de la mezcla.'
+                }
+            };
+            const PRACTICAL = [
+                ['fa-feather', '<strong>Liviana:</strong> pesa mucho menos que la fruta fresca.'],
+                ['fa-temperature-low', '<strong>Sin refrigeración:</strong> se conserva a temperatura ambiente.'],
+                ['fa-utensils', '<strong>Lista para comer:</strong> sin pelar ni cortar.'],
+                ['fa-shield-halved', '<strong>Resistente:</strong> no se golpea ni se derrama.']
+            ];
+
+            const bag = { sel: [], locked: false, occasion: null };
+            const bagWin = $('bagWindow');
+
+            $('bagPicker').innerHTML = FRUIT_ORDER.map(k =>
+                `<button type="button" class="nx-fruit-btn" data-fruit="${k}" aria-pressed="false">${fruitIcon(k)}<span>${FRUITS[k].name}</span><i class="fa-solid fa-check nx-fruit-check" aria-hidden="true"></i></button>`
+            ).join('');
+            $('bagOccasions').innerHTML = Object.entries(OCCASIONS).map(([k, o]) =>
+                `<button type="button" class="nx-occasion" data-occasion="${k}" aria-pressed="false"><i class="fa-solid ${o.icon}" aria-hidden="true"></i>${o.label}</button>`
+            ).join('');
+
+            function bagNames() { return bag.sel.map(k => FRUITS[k].name.toLowerCase()); }
+
+            const BAG_SCALE = { '50 gr': 0.86, '100 gr': 0.93, '200 gr': 1 };
+            function bagSize() {
+                const r = document.querySelector('input[name="opt-bolsita"]:checked');
+                return { size: r.value, price: +r.dataset.price };
+            }
+            function updateBagSize() {
+                const { size } = bagSize();
+                $('bagSizeTag').textContent = size;
+                $('bagVisual').style.setProperty('--bag-scale', BAG_SCALE[size] || 1);
+            }
+            $('bagSizes').addEventListener('change', () => { updateBagSize(); updateBagCaption(); });
+
+            function updateBagCaption() {
+                const n = bag.sel.length;
+                $('bagCaption').innerHTML = n === 0
+                    ? 'Tu bolsita está vacía. Elige una fruta para empezar.'
+                    : `<strong>${n} ${n === 1 ? 'fruta' : 'frutas'}</strong> en tu bolsa de ${bagSize().size} (${bagSize().price} soles): ${listEs(bagNames())}.`;
+                $('bagDone').disabled = n === 0;
+                $('bagClear').hidden = n === 0 || bag.locked;
+            }
+
+            function toggleFruit(k, btn) {
+                if (bag.locked) return;
+                const i = bag.sel.indexOf(k);
+                if (i >= 0) {
+                    bag.sel.splice(i, 1);
+                    btn.setAttribute('aria-pressed', 'false');
+                    bagWin.querySelectorAll(`[data-fruit="${k}"]`).forEach(n => n.remove());
+                } else {
+                    bag.sel.push(k);
+                    btn.setAttribute('aria-pressed', 'true');
+                    for (let p = 0; p < 2; p++) {
+                        const s = document.createElement('span');
+                        s.className = 'nx-piece';
+                        s.dataset.fruit = k;
+                        s.style.setProperty('--r', Math.round(Math.random() * 56 - 28) + 'deg');
+                        s.style.animationDelay = (p * 110) + 'ms';
+                        s.innerHTML = fruitIcon(k);
+                        const kids = bagWin.children;
+                        bagWin.insertBefore(s, kids[Math.floor(Math.random() * (kids.length + 1))] || null);
+                    }
+                }
+                updateBagCaption();
+            }
+
+            $('bagPicker').addEventListener('click', (e) => {
+                const btn = e.target.closest('.nx-fruit-btn');
+                if (btn) toggleFruit(btn.dataset.fruit, btn);
+            });
+
+            function setLocked(locked) {
+                bag.locked = locked;
+                $('bagStep1').classList.toggle('nx-locked', locked);
+                document.querySelectorAll('input[name="opt-bolsita"]').forEach(r => { r.disabled = locked; });
+                $('bagStep2').hidden = !locked;
+                $('bagVisual').classList.toggle('is-sealed', locked);
+                $('bagDone').querySelector('span').textContent = locked ? 'Cambiar frutas o tamaño' : 'Cerrar mi bolsita';
+                $('bagDone').querySelector('i').className = locked ? 'fa-solid fa-pen' : 'fa-solid fa-lock';
+                if (!locked) {
+                    bag.occasion = null;
+                    $('bagResult').hidden = true;
+                    $('bagTag').hidden = true;
+                    document.querySelectorAll('.nx-occasion').forEach(b => b.setAttribute('aria-pressed', 'false'));
+                }
+                updateBagCaption();
+            }
+
+            $('bagDone').addEventListener('click', () => {
+                setLocked(!bag.locked);
+                if (bag.locked && window.innerWidth < 1080) {
+                    $('bagStep2').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            function resetBag() {
+                setLocked(false);
+                bag.sel = [];
+                bagWin.innerHTML = '';
+                document.querySelectorAll('.nx-fruit-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
+                updateBagCaption();
+            }
+            $('bagClear').addEventListener('click', resetBag);
+
+            $('bagOccasions').addEventListener('click', (e) => {
+                const btn = e.target.closest('.nx-occasion');
+                if (!btn) return;
+                const key = btn.dataset.occasion;
+                const o = OCCASIONS[key];
+                bag.occasion = key;
+                document.querySelectorAll('.nx-occasion').forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+
+                const tag = $('bagTag');
+                tag.innerHTML = `<i class="fa-solid ${o.icon}" aria-hidden="true"></i> ${o.label}`;
+                tag.hidden = false;
+                tag.style.animation = 'none'; void tag.offsetWidth; tag.style.animation = '';
+
+                const names = listEs(bagNames());
+                const { size, price } = bagSize();
+                const res = $('bagResult');
+                res.innerHTML = `
+                    <div class="nx-result-head">
+                        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                        <div><strong>Tu bolsita para ${o.forText} está lista</strong><span>${names.charAt(0).toUpperCase() + names.slice(1)}</span></div>
+                    </div>
+                    <p>${o.text}</p>
+                    <ul class="nx-practical">${PRACTICAL.map(p => `<li><i class="fa-solid ${p[0]}" aria-hidden="true"></i><span>${p[1]}</span></li>`).join('')}</ul>
+                    <div class="nx-result-price"><span>Bolsa ${size}</span><strong>${price} soles</strong></div>
+                    <div class="nx-result-actions">
+                        <button type="button" class="btn-primary" id="bagAdd"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> <span>Agregar a mi pedido</span></button>
+                        <button type="button" class="nx-btn-outline" id="bagReset"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Armar otra bolsita</button>
+                    </div>`;
+                res.hidden = false;
+                res.style.animation = 'none'; void res.offsetWidth; res.style.animation = '';
+                $('bagReset').addEventListener('click', resetBag);
+                $('bagAdd').addEventListener('click', function onAdd() {
+                    const label = 'Mi bolsita: ' + names.charAt(0).toUpperCase() + names.slice(1);
+                    const radios = document.querySelectorAll('input[name="opt-bolsita"]');
+                    radios.forEach(r => { r.disabled = false; });
+                    if (typeof addToCart === 'function') addToCart(label, 'opt-bolsita');
+                    radios.forEach(r => { r.disabled = bag.locked; });
+                    const b = $('bagAdd');
+                    b.innerHTML = '<i class="fa-solid fa-receipt" aria-hidden="true"></i> <span>Ver mi pedido</span>';
+                    b.removeEventListener('click', onAdd);
+                    b.addEventListener('click', () => switchSection('pide-ahora'));
+                });
+            });
+            updateBagSize();
+            updateBagCaption();
+
+            /* ================= 2. TRANSFORMA LA FRUTA ================= */
+            const STAGES = [
+                {
+                    short: 'Fruta fresca', title: 'Fruta fresca', water: 80,
+                    text: 'Seleccionamos fruta madura y en buen estado, de productores de la región. Una fruta fresca está formada en su mayor parte por agua: entre 75 % y 90 %, según la fruta. Esa agua es la que la hace jugosa, pero también la que hace que se malogre en pocos días.'
+                },
+                {
+                    short: 'Preparación', title: 'Preparación', water: 80,
+                    text: 'Lavamos y desinfectamos la fruta, la pelamos cuando hace falta y la cortamos en láminas de grosor parejo. Cortarla en piezas delgadas e iguales permite que toda la fruta se seque al mismo ritmo y quede con la misma textura.'
+                },
+                {
+                    short: 'Secado solar', title: 'Secado solar', water: 50, solar: true,
+                    text: 'Colocamos las láminas en las bandejas de nuestro secador solar. La luz del sol atraviesa la cubierta transparente y calienta el aire del interior. Ese aire tibio sube, pasa entre las bandejas y sale por la parte alta, llevándose la humedad de la fruta.',
+                    extra: {
+                        title: '¿Por qué usamos el sol?',
+                        items: [
+                            'Es una fuente de energía limpia y renovable, disponible todos los días.',
+                            'La cámara cubierta mantiene la fruta protegida del polvo, la lluvia y los insectos.',
+                            'El calor es suave y constante, sin necesidad de quemar combustibles.'
+                        ]
+                    }
+                },
+                {
+                    short: 'Deshidratación', title: 'Deshidratación', water: 15, solar: true,
+                    text: 'Con el paso de las horas, el agua dentro de la fruta se evapora. La fruta se encoge, se vuelve más liviana y su sabor dulce se intensifica, porque sus azúcares naturales y su fibra se quedan dentro.',
+                    extra: {
+                        title: '¿Qué le pasa a la fruta?',
+                        items: [
+                            'Pierde la mayor parte de su agua: queda con alrededor de 15 % o menos.',
+                            'Sin agua disponible, los microorganismos que la descomponen no pueden crecer. Por eso dura mucho más sin conservantes.',
+                            'Conserva su fibra y sus minerales. Algunas vitaminas sensibles al calor y a la luz, como la C, pueden reducirse en parte.'
+                        ]
+                    }
+                },
+                {
+                    short: 'Producto NUTRIFRUTY', title: 'Producto NUTRIFRUTY', water: 15,
+                    text: 'Revisamos que cada lote tenga la textura correcta y lo envasamos. El resultado es un snack liviano, que no necesita refrigeración y está listo para llevar a donde vayas.'
+                }
+            ];
+
+            const T = (x, y, txt, cls = 'nx-scene-text', anchor = 'middle') => `<text x="${x}" y="${y}" text-anchor="${anchor}" class="${cls}">${txt}</text>`;
+            const check = (x, y) => `<circle cx="${x}" cy="${y}" r="10" fill="${LEAF}"/><path d="M${x - 4.5} ${y} L${x - 1} ${y + 3.5} L${x + 5} ${y - 3.5}" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+            const pill = (x, y, w, txt) => `<rect x="${x}" y="${y}" width="${w}" height="40" rx="20" fill="#FFFFFF" stroke="#E7D3B5"/>${check(x + 22, y + 20)}${T(x + 40, y + 25, txt, 'nx-scene-text', 'start')}`;
+            const sun = (cx, cy, r) => {
+                let rays = '';
+                for (let a = 0; a < 360; a += 45) {
+                    const rad = a * Math.PI / 180;
+                    rays += `<line x1="${cx + Math.cos(rad) * (r + 9)}" y1="${cy + Math.sin(rad) * (r + 9)}" x2="${cx + Math.cos(rad) * (r + 22)}" y2="${cy + Math.sin(rad) * (r + 22)}" stroke="#FFB300" stroke-width="5" stroke-linecap="round"/>`;
+                }
+                return `<g class="nx-rays">${rays}</g><circle cx="${cx}" cy="${cy}" r="${r}" fill="#FFC700"/>`;
+            };
+            const vapor = (x, y, delay) => `<path class="nx-vapor" style="animation-delay:${delay}s" d="M${x} ${y} q-6 -8 0 -16 q6 -8 0 -16" stroke="#8CC6E6" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+            const drop = (x, y, delay) => `<path class="nx-vapor" style="animation-delay:${delay}s" d="M${x} ${y - 8} C${x + 6} ${y - 1} ${x + 6} ${y + 5} ${x} ${y + 5} C${x - 6} ${y + 5} ${x - 6} ${y - 1} ${x} ${y - 8}Z" fill="#8CC6E6"/>`;
+
+            const traySlices = (y) => {
+                const cols = ['#F9B233', '#E0323C', '#F7D23E', '#F9A66C', '#B5D86A', '#F7931E', '#F9B233', '#E0323C'];
+                return cols.map((c, i) => `<rect x="${254 + i * 30}" y="${y - 12}" width="22" height="11" rx="5.5" fill="${c}"/>`).join('');
+            };
+
+            const bagMini = () => {
+                const inner = `
+                    <path d="M34 22 H246 Q256 22 256 32 V292 Q256 318 230 320 H50 Q24 318 24 292 V32 Q24 22 34 22Z" fill="#C99C66"/>
+                    <path d="M24 32 Q24 22 34 22 H246 Q256 22 256 32 V44 H24Z" fill="#9C6E3C"/>
+                    <line x1="34" y1="54" x2="246" y2="54" stroke="#2D1B0D" stroke-width="2.5"/>
+                    <text x="140" y="85" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="24" fill="#2D1B0D" letter-spacing="1">NUTRIFRUTY</text>
+                    <rect x="56" y="112" width="168" height="150" rx="28" fill="#FFF8EC" stroke="#A97A45" stroke-width="2"/>
+                    ${fruitAt('mango', 64, 196, 56, -15)}${fruitAt('fresa', 112, 200, 52, 12)}${fruitAt('platano', 160, 196, 56, -8)}
+                    ${fruitAt('pina', 80, 146, 56, 10)}${fruitAt('uva', 130, 150, 50, -12)}${fruitAt('durazno', 170, 152, 46, 18)}
+                    <path d="M64 120 L98 120 L70 160Z" fill="#FFFFFF" opacity=".35"/>`;
+                return `<svg x="212" y="30" width="176" height="214" viewBox="0 0 280 340">${inner}</svg>`;
+            };
+
+            const SCENES = [
+                // 0. Fruta fresca
+                `${fruitAt('mango', 150, 140, 92, -10)}${fruitAt('pina', 222, 92, 118)}${fruitAt('mandarina', 236, 160, 72)}
+                 ${fruitAt('uva', 300, 146, 78, 8)}${fruitAt('platano', 346, 136, 100, 10)}${fruitAt('fresa', 404, 168, 64, 14)}${fruitAt('durazno', 180, 176, 56)}${fruitAt('mamey', 354, 178, 60)}
+                 <rect x="140" y="212" width="320" height="94" rx="10" fill="#B07A45"/>
+                 <rect x="140" y="212" width="320" height="16" rx="6" fill="#C48B52"/>
+                 <line x1="152" y1="262" x2="448" y2="262" stroke="#94612F" stroke-width="3"/>
+                 <rect x="270" y="236" width="60" height="14" rx="7" fill="#7C4E24"/>
+                 ${T(300, 334, 'Fruta seleccionada de productores de la región')}`,
+                // 1. Preparación
+                `<ellipse cx="110" cy="240" rx="70" ry="16" fill="#9CCFE8"/>
+                 ${fruitAt('mango', 74, 192, 62, -20)}
+                 <path d="M40 240 Q48 300 110 302 Q172 300 180 240 Q110 256 40 240Z" fill="#E7F3FA" stroke="#9CCFE8" stroke-width="3"/>
+                 ${drop(84, 182, 0)}${drop(126, 176, 0.8)}${drop(104, 168, 1.6)}
+                 <rect x="220" y="236" width="300" height="56" rx="28" fill="#D9A867"/>
+                 <rect x="220" y="236" width="300" height="12" rx="6" fill="#E6BA80"/>
+                 <circle cx="496" cy="264" r="8" fill="#F1DDB8"/>
+                 ${[0,1,2,3,4,5].map(i => `<rect x="${246 + i * 32}" y="208" width="24" height="44" rx="11" fill="#F9B233" stroke="#E39A1C" stroke-width="2" transform="rotate(${-10 + i * 4} ${258 + i * 32} 230)"/>`).join('')}
+                 <g class="nx-knife">
+                     <path d="M330 168 L440 160 L440 182 L344 184 Q330 182 330 168Z" fill="#D3D9DE" stroke="#A9B2B9" stroke-width="2"/>
+                     <rect x="440" y="160" width="62" height="22" rx="8" fill="#6B4A2B"/>
+                 </g>
+                 ${T(110, 334, 'Lavado y desinfección')}${T(370, 334, 'Corte en láminas parejas')}`,
+                // 2. Secado solar
+                `${sun(92, 74, 32)}
+                 <line class="nx-beam" x1="128" y1="98" x2="290" y2="164" stroke="#FFC700" stroke-width="3" stroke-dasharray="10 8"/>
+                 <line class="nx-beam" x1="132" y1="84" x2="370" y2="146" stroke="#FFC700" stroke-width="3" stroke-dasharray="10 8"/>
+                 <line class="nx-beam" x1="128" y1="70" x2="450" y2="128" stroke="#FFC700" stroke-width="3" stroke-dasharray="10 8"/>
+                 <rect x="246" y="286" width="10" height="18" fill="#6E4A2C"/><rect x="484" y="286" width="10" height="18" fill="#6E4A2C"/>
+                 <rect x="230" y="180" width="280" height="108" rx="4" fill="#FBEFD9" stroke="#6E4A2C" stroke-width="6"/>
+                 <line x1="242" y1="226" x2="498" y2="226" stroke="#8C6239" stroke-width="4"/>
+                 <line x1="242" y1="266" x2="498" y2="266" stroke="#8C6239" stroke-width="4"/>
+                 ${traySlices(226)}${traySlices(266)}
+                 <path class="nx-flow" d="M252 282 C330 274 372 244 404 206 C432 176 462 150 492 122" stroke="#FF8A00" stroke-width="3.5" fill="none" stroke-dasharray="10 8" stroke-linecap="round"/>
+                 <path d="M230 180 L510 116 L510 180 Z" fill="#BFE3F5" fill-opacity=".5" stroke="#6E4A2C" stroke-width="6" stroke-linejoin="round"/>
+                 <rect x="482" y="82" width="26" height="40" fill="#6E4A2C"/>
+                 ${vapor(489, 76, 0)}${vapor(501, 72, 1.2)}
+                 <path class="nx-flow" d="M150 274 H218" stroke="#5AA9D6" stroke-width="4" stroke-dasharray="10 8" stroke-linecap="round"/>
+                 <path d="M216 266 L230 274 L216 282Z" fill="#5AA9D6"/>
+                 ${T(150, 258, 'Entra aire fresco', 'nx-scene-text', 'middle')}
+                 ${T(474, 40, 'Sale el vapor de agua', 'nx-scene-text', 'end')}
+                 ${T(92, 150, 'El sol calienta el aire')}
+                 ${T(370, 334, 'Secador solar')}`,
+                // 3. Deshidratación
+                `${sun(300, 52, 16)}
+                 <g>
+                     <ellipse cx="150" cy="200" rx="80" ry="54" fill="#FFB52E"/>
+                     <ellipse cx="150" cy="200" rx="63" ry="40" fill="#FFC857"/>
+                     <path d="M110 200 Q150 186 190 200 M118 214 Q150 204 182 214 M118 186 Q150 176 182 186" stroke="#F2A024" stroke-width="1.6" fill="none" opacity=".6"/>
+                     ${[[118,184],[160,176],[186,208],[134,222],[172,196]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="5.5" fill="#D6EEFA" stroke="#8CC6E6" stroke-width="1.5"/>`).join('')}
+                 </g>
+                 <g>
+                     <path d="M402 214 C398 192 428 180 456 184 C488 188 504 206 496 226 C488 244 452 246 428 240 C410 236 404 228 402 214Z" fill="#E8892A"/>
+                     <path d="M416 212 C416 198 438 192 458 195 C480 198 488 210 484 222 C478 234 452 234 436 230 C422 228 416 222 416 212Z" fill="#F2A03D"/>
+                     <path d="M420 206 q10 -6 20 0 t20 0 t20 0 M424 220 q10 -6 20 0 t20 0 t18 0" stroke="#C96F1C" stroke-width="1.8" fill="none"/>
+                 </g>
+                 <path d="M256 210 H336" stroke="#B85D09" stroke-width="4" stroke-linecap="round"/>
+                 <path d="M334 200 L352 210 L334 220Z" fill="#B85D09"/>
+                 ${drop(272, 186, 0)}${drop(300, 180, 0.7)}${drop(328, 186, 1.4)}${drop(286, 170, 2)}
+                 ${T(300, 130, 'El agua sale como vapor')}
+                 ${T(150, 290, 'Fruta fresca', 'nx-scene-strong')}${T(150, 312, 'Aprox. 80 % de agua')}
+                 ${T(450, 290, 'Fruta deshidratada', 'nx-scene-strong')}${T(450, 312, 'Aprox. 15 % de agua')}`,
+                // 4. Producto
+                `${bagMini()}
+                 ${pill(26, 92, 172, 'Sin azúcar añadida')}
+                 ${pill(406, 92, 168, 'Sin conservantes')}
+                 ${pill(26, 162, 172, 'Sin refrigeración')}
+                 ${pill(406, 162, 168, 'Lista para llevar')}
+                 <path class="nx-spark" d="M196 52 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4Z" fill="#FFC700"/>
+                 <path class="nx-spark" style="animation-delay:.8s" d="M404 232 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 l8 -3Z" fill="#FFC700"/>
+                 <path class="nx-spark" style="animation-delay:1.5s" d="M412 40 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3Z" fill="#FF8A00"/>
+                 ${T(300, 280, 'Fruta 100 % natural, lista para tu día', 'nx-scene-strong')}`
+            ];
+
+            $('procScene').innerHTML = `<svg viewBox="0 0 600 350" role="img" aria-label="Animación del proceso de transformación de la fruta">
+                <rect x="0" y="304" width="600" height="46" fill="#F1DDB8"/>
+                ${SCENES.map((s, i) => `<g class="nx-scene" data-scene="${i}">${s}</g>`).join('')}
+            </svg>`;
+
+            $('procTimeline').innerHTML = STAGES.map((s, i) => `
+                <li><button type="button" class="nx-tl-btn" data-stage="${i}">
+                    <span class="nx-tl-dot">${i + 1}</span>
+                    <span class="nx-tl-label">${s.short}</span>
+                    ${s.solar ? '<span class="nx-tl-solar"><i class="fa-solid fa-sun" aria-hidden="true"></i> Energía solar</span>' : ''}
+                </button></li>`).join('');
+
+            let stage = 0, playTimer = null;
+            const sceneEls = document.querySelectorAll('#procScene .nx-scene');
+            const tlBtns = document.querySelectorAll('#procTimeline .nx-tl-btn');
+
+            function setStage(i) {
+                stage = i;
+                const s = STAGES[i];
+                sceneEls.forEach((el, j) => el.classList.toggle('is-active', j === i));
+                tlBtns.forEach((b, j) => {
+                    b.classList.toggle('is-done', j < i);
+                    if (j === i) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
+                });
+                $('procFill').style.width = (i / (STAGES.length - 1) * 80) + '%';
+                $('procText').innerHTML = `
+                    <div class="nx-proc-text-wrap">
+                        <div>
+                            <span class="nx-proc-step">Etapa ${i + 1} de ${STAGES.length}</span>
+                            <h4>${s.title}${s.solar ? ' <span class="nx-solar-badge"><i class="fa-solid fa-sun" aria-hidden="true"></i> Energía solar</span>' : ''}</h4>
+                        </div>
+                        <p class="nx-proc-text">${s.text}</p>
+                        ${s.extra ? `<div class="nx-proc-extra"><strong>${s.extra.title}</strong><ul>${s.extra.items.map(t => `<li>${t}</li>`).join('')}</ul></div>` : ''}
+                    </div>`;
+                $('procWaterFill').style.width = s.water + '%';
+                $('procWaterVal').textContent = s.water + ' %';
+                $('procPrev').disabled = i === 0;
+                $('procNext').disabled = i === STAGES.length - 1;
+            }
+
+            function stopPlay() {
+                if (playTimer) clearInterval(playTimer);
+                playTimer = null;
+                const b = $('procPlay');
+                b.querySelector('i').className = 'fa-solid fa-play';
+                b.querySelector('span').textContent = stage === STAGES.length - 1 ? 'Ver de nuevo' : 'Reproducir proceso';
+            }
+            function startPlay() {
+                if (stage === STAGES.length - 1) setStage(0);
+                const b = $('procPlay');
+                b.querySelector('i').className = 'fa-solid fa-pause';
+                b.querySelector('span').textContent = 'Pausar';
+                playTimer = setInterval(() => {
+                    const sec = $('sec-explora');
+                    if (!sec.classList.contains('active-section') || $('nxPanel-transforma').hidden) { stopPlay(); return; }
+                    if (stage < STAGES.length - 1) setStage(stage + 1);
+                    if (stage === STAGES.length - 1) stopPlay();
+                }, 5500);
+            }
+            $('procPlay').addEventListener('click', () => playTimer ? stopPlay() : startPlay());
+            $('procPrev').addEventListener('click', () => { stopPlay(); if (stage > 0) setStage(stage - 1); stopPlay(); });
+            $('procNext').addEventListener('click', () => { stopPlay(); if (stage < STAGES.length - 1) setStage(stage + 1); stopPlay(); });
+            tlBtns.forEach(b => b.addEventListener('click', () => { stopPlay(); setStage(+b.dataset.stage); stopPlay(); }));
+            setStage(0);
+
+            /* ================= 3. DETECTIVES DE NUTRIENTES ================= */
+            const CASES = {
+                uva: {
+                    clues: ['Crezco en racimos y mi variedad verde es dulce y refrescante.', 'Cuando me secan, me convierto en pasas.', 'Aporto una vitamina que también abunda en verduras de hoja verde, como la espinaca.'],
+                    question: '¿Qué vitamina, importante para la coagulación de la sangre, aportan las uvas?',
+                    options: ['Vitamina K', 'Vitamina D', 'Vitamina B12'], answer: 0,
+                    explain: 'Las uvas aportan vitamina K, que ayuda a que la sangre coagule cuando te haces una herida y participa en la salud de los huesos. Las vitaminas D y B12 no vienen de la fruta: la D se forma sobre todo con la luz del sol y la B12 está en alimentos de origen animal.'
+                },
+                mandarina: {
+                    clues: ['Soy un cítrico pequeño que se pela fácilmente con los dedos.', 'Por dentro estoy dividida en gajos jugosos.', 'Mi nutriente estrella apoya tus defensas y ayuda a aprovechar el hierro de los alimentos.'],
+                    question: '¿Qué vitamina destaca en la mandarina?',
+                    options: ['Vitamina D', 'Vitamina C', 'Vitamina B12'], answer: 1,
+                    explain: 'La mandarina es fuente de vitamina C, que apoya el sistema de defensas, ayuda a formar colágeno para la piel y mejora la absorción del hierro de origen vegetal. Es sensible al calor y a la luz, por eso la fruta fresca conserva más que la deshidratada.'
+                },
+                mango: {
+                    clues: ['Mi pulpa es de un color anaranjado intenso.', 'Ese color viene de unos pigmentos llamados betacarotenos.', 'Tu cuerpo transforma esos pigmentos en una vitamina importante para la vista.'],
+                    question: '¿En qué vitamina transforma el cuerpo los betacarotenos del mango?',
+                    options: ['Vitamina K', 'Vitamina A', 'Vitamina D', 'Vitamina B12'], answer: 1,
+                    explain: 'Los betacarotenos son pigmentos naturales que el cuerpo convierte en vitamina A. Esta vitamina es necesaria para ver bien, sobre todo con poca luz, y para mantener sanas la piel y las defensas.'
+                },
+                pina: {
+                    clues: ['Tengo una corona de hojas verdes.', 'Contengo bromelina, una enzima natural.', 'Soy una de las frutas con más cantidad de un mineral que participa en la formación de los huesos.'],
+                    question: '¿Qué mineral abunda en la piña?',
+                    options: ['Sodio', 'Yodo', 'Manganeso', 'Flúor'], answer: 2,
+                    explain: 'La piña es una de las frutas con más manganeso, un mineral que el cuerpo necesita en pequeñas cantidades para formar huesos y aprovechar la energía de los alimentos. La bromelina, en cambio, no es un nutriente: es una enzima propia de la piña.'
+                },
+                fresa: {
+                    clues: ['Soy roja y llevo mis "semillas" por fuera.', 'Mi color se debe a unos pigmentos naturales.', 'Esos mismos pigmentos dan su color a los arándanos y a las uvas negras.'],
+                    question: '¿Cómo se llaman los pigmentos antioxidantes que dan su color rojo a la fresa?',
+                    options: ['Clorofilas', 'Antocianinas', 'Betacarotenos'], answer: 1,
+                    explain: 'Las antocianinas son pigmentos que dan colores rojos, morados y azules a muchas frutas. Funcionan como antioxidantes, que ayudan a proteger las células. Las clorofilas dan el color verde a las plantas y los betacarotenos, el anaranjado.'
+                },
+                durazno: {
+                    clues: ['Mi piel es suave, como el terciopelo.', 'Tengo un hueso duro en el centro.', 'Cuando estoy fresco, casi todo mi peso es de un solo componente.'],
+                    question: '¿Qué componente forma casi el 90 % del durazno fresco y se retira al deshidratarlo?',
+                    options: ['Azúcar', 'Fibra', 'Agua', 'Proteína'], answer: 2,
+                    explain: 'Un durazno fresco tiene cerca de 89 % de agua. Al deshidratarlo, el agua se evapora y lo que queda —azúcares naturales, fibra y minerales— se concentra en un trozo más pequeño y liviano. Por eso una porción de fruta deshidratada es más pequeña que una de fruta fresca.'
+                },
+                mamey: {
+                    clues: ['Mi cáscara es marrón y áspera.', 'Mi pulpa es anaranjada, cremosa y muy dulce.', 'Tengo bastante de un nutriente que da saciedad y ayuda al intestino.'],
+                    question: '¿Qué nutriente presente en la pulpa del mamey favorece la digestión?',
+                    options: ['Colesterol', 'Fibra', 'Sodio', 'Cafeína'], answer: 1,
+                    explain: 'El mamey aporta fibra, que da sensación de saciedad y ayuda a que el intestino funcione con regularidad. Ninguna fruta contiene colesterol: este solo se encuentra en alimentos de origen animal.'
+                },
+                platano: {
+                    clues: ['Soy alargado, curvo y amarillo.', 'Muchos deportistas me comen antes o después de entrenar.', 'Mi mineral más conocido ayuda a que los músculos y los nervios funcionen bien.'],
+                    question: '¿Cuál es el mineral más conocido del plátano?',
+                    options: ['Calcio', 'Hierro', 'Potasio', 'Yodo'], answer: 2,
+                    explain: 'El plátano es fuente de potasio, un mineral que participa en la contracción de los músculos —incluido el corazón— y en la transmisión de los impulsos nerviosos. También aporta vitamina B6 y carbohidratos que dan energía.'
+                }
+            };
+
+            const det = { order: [], idx: 0, score: 0, shown: 1, done: false };
+
+            function detRenderClues() {
+                const c = CASES[det.order[det.idx]];
+                $('detClues').innerHTML = c.clues.slice(0, det.shown).map((t, i) => `<li><span>Pista ${i + 1}</span>${t}</li>`).join('');
+                const left = c.clues.length - det.shown;
+                const more = $('detMore');
+                more.hidden = left === 0 || det.done;
+                more.textContent = `Ver otra pista (${left} ${left === 1 ? 'restante' : 'restantes'})`;
+            }
+            function detRender() {
+                const key = det.order[det.idx];
+                const c = CASES[key];
+                det.shown = 1; det.done = false;
+                $('detCount').textContent = `Caso ${det.idx + 1} de ${det.order.length}`;
+                $('detScore').textContent = `${det.score} ${det.score === 1 ? 'acierto' : 'aciertos'}`;
+                const f = $('detFruit');
+                f.innerHTML = fruitIcon(key);
+                f.classList.remove('is-new'); void f.offsetWidth; f.classList.add('is-new');
+                $('detName').textContent = FRUITS[key].name;
+                $('detQuestion').textContent = c.question;
+                $('detOptions').innerHTML = c.options.map((o, i) => `<button type="button" class="nx-option" data-i="${i}">${o}</button>`).join('');
+                $('detFeedback').hidden = true;
+                detRenderClues();
+            }
+            function detStart() {
+                det.order = shuffle(FRUIT_ORDER);
+                det.idx = 0; det.score = 0;
+                detRender();
+            }
+            $('detMore').addEventListener('click', () => { det.shown++; detRenderClues(); });
+            $('detOptions').addEventListener('click', (e) => {
+                const btn = e.target.closest('.nx-option');
+                if (!btn || det.done) return;
+                const c = CASES[det.order[det.idx]];
+                const chosen = +btn.dataset.i;
+                const right = chosen === c.answer;
+                det.done = true;
+                if (right) det.score++;
+                $('detOptions').querySelectorAll('.nx-option').forEach((b, i) => {
+                    b.disabled = true;
+                    if (i === c.answer) b.classList.add('is-right');
+                    else if (i === chosen) b.classList.add('is-wrong');
+                    else b.classList.add('is-faded');
+                });
+                det.shown = c.clues.length;
+                detRenderClues();
+                $('detScore').textContent = `${det.score} ${det.score === 1 ? 'acierto' : 'aciertos'}`;
+                const last = det.idx === det.order.length - 1;
+                const fb = $('detFeedback');
+                fb.classList.toggle('is-bad', !right);
+                fb.innerHTML = `
+                    <div class="nx-feedback-title"><i class="fa-solid ${right ? 'fa-circle-check' : 'fa-circle-info'}" aria-hidden="true"></i>${right ? '¡Caso resuelto!' : `La respuesta es: ${c.options[c.answer]}`}</div>
+                    <p>${c.explain}</p>
+                    ${last ? `<p><strong>Resolviste ${det.score} de ${det.order.length} casos.</strong></p>` : ''}
+                    <button type="button" class="btn-primary" id="detNext">${last ? '<i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Jugar de nuevo' : 'Siguiente caso <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>'}</button>`;
+                fb.hidden = false;
+                $('detNext').addEventListener('click', () => {
+                    if (last) detStart(); else { det.idx++; detRender(); }
+                    $('detClues').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            });
+            detStart();
+
+            /* ================= 4. ADIVINA LA FRUTA ================= */
+            const RIDDLES = {
+                pina: { clues: ['Tengo corona, pero no soy reina.', 'Mi cáscara es dura y está cubierta de escamas.', 'Por dentro soy amarilla, jugosa y un poco ácida.'], info: 'Cada piña se forma a partir de muchas flores pequeñas que se unen en un solo fruto. Deshidratada mantiene su sabor dulce y ligeramente ácido.' },
+                platano: { clues: ['Me visto de amarillo y me quito el abrigo para que me comas.', 'Crezco junto a mis hermanos en grandes racimos.', 'Soy alargado y curvo.'], info: 'Es una fuente práctica de energía y potasio. Deshidratado se convierte en chips crujientes sin necesidad de freírlo.' },
+                fresa: { clues: ['Llevo mis "semillas" por fuera.', 'Uso un sombrerito verde.', 'Soy roja, pequeña y con forma de corazón.'], info: 'Los puntitos de su superficie, que parecen semillas, son en realidad sus verdaderos frutos, llamados aquenios. Deshidratada se vuelve crujiente y concentra su sabor.' },
+                uva: { clues: ['Nunca ando sola: vivo en racimos con muchas hermanas.', 'Soy redonda, pequeña y de color verde claro.', 'Si me dejan secar, cambio de nombre.'], info: 'Las uvas secas son las famosas pasas. Deshidratar la uva es una de las formas más antiguas que existen para conservar la fruta.' },
+                mandarina: { clues: ['Soy prima pequeña de la naranja.', 'Me pelas con los dedos, sin cuchillo.', 'Por dentro guardo gajos jugosos.'], info: 'Su cáscara se retira con facilidad, por eso es una de las frutas favoritas para la lonchera. Es fuente de vitamina C.' },
+                mango: { clues: ['Guardo una semilla grande y plana.', 'Mi pulpa es anaranjada y muy dulce.', 'El norte del Perú es famoso por cultivarme y exportarme.'], info: 'El Perú es uno de los principales exportadores de mango del mundo, y gran parte se cultiva en Piura. Sus betacarotenos le dan su color anaranjado.' },
+                durazno: { clues: ['Mi piel es suave como el terciopelo.', 'En el centro guardo un hueso muy duro.', 'En España me llaman melocotón.'], info: 'Es una fruta aromática con cerca de 89 % de agua. Por eso, al deshidratarlo, se reduce mucho de tamaño y su sabor se concentra.' },
+                mamey: { clues: ['Por fuera soy marrón y áspero.', 'Por dentro soy anaranjado y cremoso.', 'Soy una fruta tropical de América, menos conocida que mis compañeras.'], info: 'El mamey es una fruta tropical de pulpa dulce y cremosa. Deshidratarlo es una forma de darle un nuevo valor y llevar su sabor a más personas.' }
+            };
+            const TILE_START = 0, TILE_STEP = 3;
+            const adv = { order: [], idx: 0, score: 0, shown: 1, tiles: [], solved: false };
+
+            function advTilesOpen(n) {
+                const tiles = $('advTiles').children;
+                adv.tiles.forEach((t, i) => tiles[t].classList.toggle('is-open', i < n));
+            }
+            function advRenderClues() {
+                const r = RIDDLES[adv.order[adv.idx]];
+                $('advClues').innerHTML = r.clues.slice(0, adv.shown).map((t, i) => `<li><span>Pista ${i + 1}</span>${t}</li>`).join('');
+                const left = r.clues.length - adv.shown;
+                const more = $('advMore');
+                more.hidden = left === 0 || adv.solved;
+                more.textContent = `Ver otra pista (${left} ${left === 1 ? 'restante' : 'restantes'})`;
+                if (!adv.solved) advTilesOpen(TILE_START + (adv.shown - 1) * TILE_STEP);
+            }
+            function advRender() {
+                const key = adv.order[adv.idx];
+                adv.shown = 1; adv.solved = false;
+                adv.tiles = shuffle([...Array(16).keys()]);
+                $('advCount').textContent = `Adivinanza ${adv.idx + 1} de ${adv.order.length}`;
+                $('advScore').textContent = `${adv.score} ${adv.score === 1 ? 'acierto' : 'aciertos'}`;
+                $('advFruit').innerHTML = fruitIcon(key);
+                $('advTiles').innerHTML = Array.from({ length: 16 }, () => '<div class="nx-tile">?</div>').join('');
+                $('advMystery').classList.remove('is-solved');
+                $('advName').textContent = '¿Qué fruta será?';
+                const opts = shuffle([key, ...shuffle(FRUIT_ORDER.filter(k => k !== key)).slice(0, 3)]);
+                $('advOptions').innerHTML = opts.map(k => `<button type="button" class="nx-option" data-fruit="${k}">${FRUITS[k].name}</button>`).join('');
+                $('advStatus').textContent = '';
+                $('advFeedback').hidden = true;
+                requestAnimationFrame(advRenderClues);
+            }
+            function advStart() {
+                adv.order = shuffle(FRUIT_ORDER);
+                adv.idx = 0; adv.score = 0;
+                advRender();
+            }
+            $('advMore').addEventListener('click', () => { adv.shown++; advRenderClues(); });
+            $('advOptions').addEventListener('click', (e) => {
+                const btn = e.target.closest('.nx-option');
+                if (!btn || adv.solved || btn.disabled) return;
+                const key = adv.order[adv.idx];
+                const r = RIDDLES[key];
+                if (btn.dataset.fruit !== key) {
+                    btn.classList.add('is-wrong');
+                    btn.disabled = true;
+                    if (adv.shown < r.clues.length) {
+                        adv.shown++;
+                        advRenderClues();
+                        $('advStatus').textContent = `No es ${FRUITS[btn.dataset.fruit].name.toLowerCase()}. Te damos una pista más.`;
+                    } else {
+                        $('advStatus').textContent = `No es ${FRUITS[btn.dataset.fruit].name.toLowerCase()}. Inténtalo otra vez.`;
+                    }
+                    return;
+                }
+                adv.solved = true;
+                const firstTry = !$('advOptions').querySelector('.is-wrong');
+                if (firstTry) adv.score++;
+                btn.classList.add('is-right');
+                $('advOptions').querySelectorAll('.nx-option').forEach(b => { b.disabled = true; if (b !== btn && !b.classList.contains('is-wrong')) b.classList.add('is-faded'); });
+                advTilesOpen(16);
+                $('advMystery').classList.add('is-solved');
+                $('advName').textContent = FRUITS[key].name;
+                $('advStatus').textContent = '';
+                adv.shown = r.clues.length;
+                advRenderClues();
+                $('advScore').textContent = `${adv.score} ${adv.score === 1 ? 'acierto' : 'aciertos'}`;
+                const last = adv.idx === adv.order.length - 1;
+                const fb = $('advFeedback');
+                fb.classList.remove('is-bad');
+                fb.innerHTML = `
+                    <div class="nx-feedback-title"><i class="fa-solid fa-circle-check" aria-hidden="true"></i>¡Es ${FRUITS[key].name.toLowerCase()}!</div>
+                    <p>${r.info}</p>
+                    ${last ? `<p><strong>Adivinaste ${adv.score} de ${adv.order.length} frutas al primer intento.</strong></p>` : ''}
+                    <button type="button" class="btn-primary" id="advNext">${last ? '<i class="fa-solid fa-rotate-left" aria-hidden="true"></i> Jugar de nuevo' : 'Siguiente adivinanza <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>'}</button>`;
+                fb.hidden = false;
+                $('advNext').addEventListener('click', () => {
+                    if (last) advStart(); else { adv.idx++; advRender(); }
+                    $('advClues').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            });
+            advStart();
         })();
     </script>
 </body>
